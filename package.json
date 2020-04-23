@@ -1,0 +1,25 @@
+{
+  "name": "wotd",
+  "version": "1.0.0",
+  "description": "WOTD is a simple NodeJS script to download the published word of the day by RAE",
+  "main": "wotd.js",
+  "scripts": {
+    "start": "node wotd.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/raaowx/wotd.git"
+  },
+  "author": "raaowx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/raaowx/wotd/issues"
+  },
+  "homepage": "https://gitlab.com/raaowx/wotd#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  }
+}
