@@ -1,60 +1,32 @@
 #!/usr/bin/env node
 "use strict"
-const cheerio = require('cheerio');
-const request = require('request-promise');
-const options = {
-  transform: (body, response) => {
-    console.log(response.statusCode);
-    return cheerio.load(body);
-  }
+const parser = require('./parser');
+const dle = require('./requestor');
+
+async function __crawlDelay(s) {
+  const ms = 1000 * s;
+  return new Promise((resolve) => { 
+    setTimeout(resolve(), ms); 
+  });
 }
 
-let dle = {
-  uri: 'https://dle.rae.es',
-  getWOTD: async () => {
-    return request(dle.uri, options)
-      .then((html) => {
-        let wotd = {
-          name: html('#wotd a').text(),
-          path: html('#wotd a').attr('href').split('?')[0]
-        }
-        return wotd;
-      })
-      .catch((error) => {
-        console.log("[ERROR] DLE getWordOfTheDay:", error);
-        return { error: true };
-      });
-  },
-  findMeanings: async (wotd) => {
-    let wordUri = dle.uri + wotd.path;
-    return request(wordUri, options)
-      .then((html) => {
-        let meanings = [];
-        console.log(html.html());
-        html('#resultados article .j').each((i, e) => {
-          console.log($(this), "====>", i, e);
-          meanings.push($(this).text());
-        });
-        wotd['meanings'] = meanings;
-        return wotd
-      })
-      .catch((error) => {
-        console.log("[ERROR] DLE getMeanings:", error);
-        return { error: true };
-      });
+async function main() {
+  try {
+    let wotd = {};
+    
+    let result = await dle.getWordOfTheDay();
+    let obj = parser.findWordOfTheDay(result.html);
+    wotd['name'] = obj.name;
+    wotd['path'] = obj.path;
+
+    await __crawlDelay(5);
+
+    console.log("Today's word is:", wotd.name);
+    console.log("You can find it in:", dle.__uri + wotd.path);
+    // TODO: Show meanings
+  } catch (error) {
+    console.log("Exception catched with error message:", error);
   }
-}
-
-
-function main() {
-  return dle.getWOTD()
-    .then(dle.findMeanings)
-    .then((wotd) => {
-      console.log(wotd);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
 }
 
 main();
