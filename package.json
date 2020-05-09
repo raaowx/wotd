@@ -4,7 +4,7 @@
   "description": "WOTD is a simple NodeJS script to download the word of the day published by RAE and its definitions",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

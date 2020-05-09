@@ -7,7 +7,7 @@ WOTD is a simple NodeJS script to download the published word of the day by RAE
 
 ## RAE (Real Academia Española)
 
-This script crawls the dictionary website published by the RAE public organism. The objective is to find the the word of the day in the main webpage. After find it the script will also search for all the meanings of the word.
+This script crawls the dictionary website published by the RAE public organism. The objective is to find the word of the day in the main webpage. After find it the script will also search for all the meanings of the word.
 
 **Oficial web:** [DLE](https://dle.rae.es)  
 **Robots:** [robots.txt](https://dle.rae.es/robots.txt)  
