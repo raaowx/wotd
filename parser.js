@@ -11,8 +11,15 @@ let parser = {
       name: $('#wotd a').clone().children().remove().end().text(),
       path: $('#wotd a').attr('href').split('?')[0]
     }
+  },
+  findMeanings: (html) => {
+    let $ = parser.__convert(html);
+    let meanings = [];
+    $('.j').each((_, e) => {
+      meanings.push($(e).clone().children('mark').prepend(' ').text() + ".");
+    });
+    return meanings;
   }
-  // TODO: Parse meanings. Try to find how to iterate over al <p class="j"> and extract the text.
 }
 
 module.exports = parser;

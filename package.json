@@ -1,10 +1,10 @@
 {
   "name": "wotd",
   "version": "1.0.0",
-  "description": "WOTD is a simple NodeJS script to download the published word of the day by RAE",
-  "main": "wotd.js",
+  "description": "WOTD is a simple NodeJS script to download the word of the day published by RAE and its definitions",
+  "main": "main.js",
   "scripts": {
-    "start": "node wotd.js",
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

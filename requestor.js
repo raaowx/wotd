@@ -17,7 +17,7 @@ let dle = {
         }
       });
   },
-  findMeanings: async (path) => {
+  getMeanings: async (path) => {
     let uri = dle.__uri + path;
     return rp(uri)
       .then((html) => {
