@@ -20,6 +20,30 @@ Crawl-delay: 1
 
 As the `robots` file shows, crawling the DLE is allowed with the certain conditions.
 
+## Build binary
+
+For building a stand-alone binary we will use the Node tool [PKG](https://github.com/zeit/pkg). I'll asume that you already have NodeJS and PKG in your system.
+
+### Steps
+
+1. Clone repository: `git clone https://gitlab.com/raaowx/wotd && cd wotd`
+2. Install dependencies: `npm install`
+3. Build the binary: `pkg .`
+
+#### Build for specific OS
+
+##### Windows
+
+`pkg -t node12-win-x64 .`
+
+##### MacOS
+
+`build -t node12-macos-x64 .`
+
+##### Linux
+
+`build -t node12-linux-x64`
+
 ## License
 
 The script is licensed with MIT License.
