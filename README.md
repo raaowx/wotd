@@ -38,11 +38,11 @@ For building a stand-alone binary we will use the Node tool [PKG](https://github
 
 ##### MacOS
 
-`build -t node12-macos-x64 .`
+`pkg -t node12-macos-x64 .`
 
 ##### Linux
 
-`build -t node12-linux-x64`
+`pkg -t node12-linux-x64`
 
 ## License
 
