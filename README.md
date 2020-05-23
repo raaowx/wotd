@@ -20,13 +20,17 @@ Crawl-delay: 1
 
 As the `robots` file shows, crawling the DLE is allowed with the certain conditions.
 
+## Download binary
+
+Refer to [releases](https://github.com/raaowx/wotd/releases) to find the last version.
+
 ## Build binary
 
 For building a stand-alone binary we will use the Node tool [PKG](https://github.com/zeit/pkg). I'll asume that you already have NodeJS and PKG in your system.
 
 ### Steps
 
-1. Clone repository: `git clone https://gitlab.com/raaowx/wotd && cd wotd`
+1. Clone repository: `git clone https://github.com/raaowx/wotd && cd wotd`
 2. Install dependencies: `npm install`
 3. Build the binary: `pkg .`
 
