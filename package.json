@@ -1,6 +1,6 @@
 {
   "name": "wotd",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "WOTD is a simple NodeJS script to download the word of the day published by RAE and its definitions",
   "main": "main.js",
   "bin": "src/main.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/raaowx/wotd.git"
+    "url": "git+ssh://git@github.com/raaowx/wotd.git"
   },
   "author": "raaowx",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/raaowx/wotd/issues"
+    "url": "https://github.com/raaowx/wotd/issues"
   },
-  "homepage": "https://gitlab.com/raaowx/wotd#readme",
+  "homepage": "https://github.com/raaowx/wotd",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "request": "^2.88.2",
