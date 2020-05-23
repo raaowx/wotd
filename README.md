@@ -3,7 +3,7 @@
 <img
 src="./wotd.png" width="25">
 
-WOTD is a simple NodeJS script to download the published word of the day by RAE
+WOTD is a simple TypeScript script to download the published word of the day by RAE. It runs over NodeJS.
 
 ## RAE (Real Academia Española)
 
@@ -26,27 +26,31 @@ Refer to [releases](https://github.com/raaowx/wotd/releases) to find the last ve
 
 ## Build binary
 
-For building a stand-alone binary we will use the Node tool [PKG](https://github.com/zeit/pkg). I'll asume that you already have NodeJS and PKG in your system.
+For building a stand-alone binary we will use the Node tool Pkg. I'll asume that you already have the following requesites in your system:
+
+* [NodeJS](https://nodejs.org)
+* [TypeScript](https://www.typescriptlang.org)
+* [rimraf](https://github.com/isaacs/rimraf)
+* [Pkg](https://github.com/zeit/pkg)
 
 ### Steps
 
 1. Clone repository: `git clone https://github.com/raaowx/wotd && cd wotd`
-2. Install dependencies: `npm install`
-3. Build the binary: `pkg .`
+2. Build the binary: `npm run pack`
 
 #### Build for specific OS
 
-##### Windows
+##### Linux
 
-`pkg -t node12-win-x64 .`
+`npm run linuxPack`
 
 ##### MacOS
 
-`pkg -t node12-macos-x64 .`
+`npm run macosPack`
 
-##### Linux
+##### Windows
 
-`pkg -t node12-linux-x64`
+`npm run winPack`
 
 ## License
 

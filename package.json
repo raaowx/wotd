@@ -1,12 +1,20 @@
 {
   "name": "wotd",
-  "version": "1.0.2",
-  "description": "WOTD is a simple NodeJS script to download the word of the day published by RAE and its definitions",
+  "version": "2.0.0",
+  "description": "WOTD is a simple TypeScript script to download the published word of the day by RAE",
   "main": "main.js",
-  "bin": "src/main.js",
+  "bin": "dist/main.js",
   "scripts": {
-    "start": "node src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run clean && npm run build && node dist/main.js",
+    "pack": "npm run clean && npm run build && pkg --out-path release .",
+    "build": "npm install && npm run compile",
+    "clean": "rimraf dist release",
+    "compile": "tsc -p tsconfig.json",
+    "devStart": "ts-node src/main.ts",
+    "linuxPack": "npm run clean && npm run build && pkg -t node12-linux-x64 --out-path release .",
+    "macosPack": "npm run clean && npm run build && pkg -t node12-macos-x64 --out-path release .",
+    "winPack": "npm run clean && npm run build && pkg -t node12-win-x64 --out-path release ."
   },
   "repository": {
     "type": "git",
@@ -19,8 +27,14 @@
   },
   "homepage": "https://github.com/raaowx/wotd",
   "dependencies": {
+    "@types/cheerio": "^0.22.18",
+    "@types/request": "^2.48.5",
+    "@types/request-promise": "^4.1.46",
     "cheerio": "^1.0.0-rc.3",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.5"
   }
 }
