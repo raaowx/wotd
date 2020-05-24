@@ -16,7 +16,7 @@ import { Requestor } from './communications/requestor';
     }
     let wotd = new WOTD(obj.name!, obj.path!);
     Printer.info("Today's word is: ", wotd.getName());
-    await Crawler.delay(5);
+    await Crawler.delay();
     result = await Requestor.getMeanings(RAE.getUrlFor(wotd.getPath()));
     if (result.success) {
       wotd.setMeanings(Parser.findMeanings(result.html));
@@ -28,6 +28,6 @@ import { Requestor } from './communications/requestor';
     });
     Printer.info("You can find more information in: ", RAE.getUrlFor(wotd.getPath()), true);
   } catch (error) {
-    Printer.error("Exception catched with error message: ");
+    Printer.error(error);
   }
 })();
