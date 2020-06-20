@@ -42,15 +42,15 @@ For building a stand-alone binary we will use the Node tool Pkg. I'll asume that
 
 ##### Linux
 
-`npm run linuxPack`
+`npm run pack:linux`
 
 ##### MacOS
 
-`npm run macosPack`
+`npm run pack:macos`
 
 ##### Windows
 
-`npm run winPack`
+`npm run pack:win`
 
 ## License
 

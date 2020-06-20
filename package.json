@@ -7,14 +7,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run clean && npm run build && node dist/main.js",
-    "pack": "npm run clean && npm run build && pkg --out-path release .",
+    "start:dev": "ts-node src/main.ts",
     "build": "npm install && npm run compile",
     "clean": "rimraf dist release",
     "compile": "tsc -p tsconfig.json",
-    "devStart": "ts-node src/main.ts",
-    "linuxPack": "npm run clean && npm run build && pkg -t node12-linux-x64 --out-path release .",
-    "macosPack": "npm run clean && npm run build && pkg -t node12-macos-x64 --out-path release .",
-    "winPack": "npm run clean && npm run build && pkg -t node12-win-x64 --out-path release ."
+    "pack": "npm run clean && npm run build && pkg --out-path release .",
+    "pack:linux": "npm run clean && npm run build && pkg -t node12-linux-x64 --out-path release .",
+    "pack:macos": "npm run clean && npm run build && pkg -t node12-macos-x64 --out-path release .",
+    "pack:win": "npm run clean && npm run build && pkg -t node12-win-x64 --out-path release ."
   },
   "repository": {
     "type": "git",

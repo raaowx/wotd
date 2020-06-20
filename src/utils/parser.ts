@@ -1,19 +1,36 @@
 import cheerio = require('cheerio');
-
+import { RAE } from '../model/rae';
+import { WOTD } from '../model/wotd';
+/** Class that handles the HTML parsing. */
 export class Parser {
-  private static convert(html:string) {
+  /**
+   * Convert HTML to [jQuery](https://jquery.com) object using [Cheerio](https://cheerio.js.org) lib.
+   * @param html String containing the HTML web page.
+   * @returns jQuery object.
+   */
+  private static convert(html: string): CheerioStatic {
     return cheerio.load(html);
   }
-
-  static findWordOfTheDay(html:string) {
+  /**
+   * Finds the word of the day in the HTML web page.
+   * @param html String containing the HTML web page.
+   * @returns WOTD object containing the word of the day. Can return `null`.
+   */
+  static findWordOfTheDay(html: string): WOTD | null {
     let $ = this.convert(html);
-    return {
-      name: $('#wotd a').clone().children().remove().end().text(),
-      path: $('#wotd a').attr('href')?.split('?')[0]
+    let name = $('#wotd a')?.clone().children().remove().end().text();
+    let path = $('#wotd a')?.attr('href')?.split('?')[0];
+    if (name && path) {
+      return new WOTD(name, path);
     }
+    return null    
   }
-
-  static findMeanings(html:string) {
+  /**
+   * Finds the meanings of the word of the day in the HTML web page.
+   * @param html String containing the HTML web page.
+   * @returns Array containing the meanings.
+   */
+  static findMeanings(html: string): string[] {
     let $ = this.convert(html);
     let meanings:string[] = [];
     $('.j').each((_, e) => {
@@ -21,7 +38,7 @@ export class Parser {
       m.children().remove('.n_acep');
       m.children().remove('abbr');
       meanings.push(m.text());
-    });
+    });    
     return meanings;
   }
 }

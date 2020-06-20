@@ -7,17 +7,19 @@ import { Requestor } from './communications/requestor';
 
 (async () => {
   try {
-    let result = await Requestor.getWordOfTheDay(RAE.url);
-    let obj;
+    let result = await Requestor.get(RAE.url);
+    let wotd:WOTD|null;
     if (result.success) {
-      obj = Parser.findWordOfTheDay(result.html)
+      wotd = Parser.findWordOfTheDay(result.html);
+      if (!wotd) {
+        throw new Error("WOTD can't be created.");
+      }
     } else {
       throw new Error(result.error);
     }
-    let wotd = new WOTD(obj.name!, obj.path!);
     Printer.info("Today's word is: ", wotd.getName());
     await Crawler.delay();
-    result = await Requestor.getMeanings(RAE.getUrlFor(wotd.getPath()));
+    result = await Requestor.get(RAE.getUrlFor(wotd.getPath()));
     if (result.success) {
       wotd.setMeanings(Parser.findMeanings(result.html));
     } else {
