@@ -28,9 +28,11 @@
   "homepage": "https://github.com/raaowx/wotd",
   "dependencies": {
     "@types/cheerio": "^0.22.18",
+    "@types/os-locale": "^4.0.2",
     "@types/request": "^2.48.5",
     "@types/request-promise": "^4.1.46",
     "cheerio": "^1.0.0-rc.3",
+    "os-locale": "^5.0.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
   },

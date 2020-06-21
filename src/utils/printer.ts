@@ -11,7 +11,7 @@ export module Printer {
     if (cr) {
       console.log();
     }
-    console.log(Color.dim + Color.white + staticT + Color.reset + Color.white + dynamicT + Color.reset);
+    console.log(Color.dim + Color.white + staticT + Color.reset + " " + Color.white + dynamicT + Color.reset);
   }
   /**
    * For printing errors

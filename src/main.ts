@@ -4,9 +4,11 @@ import { Crawler } from './utils/crawler';
 import { Parser } from './utils/parser';
 import { Printer } from './utils/printer'
 import { Requestor } from './communications/requestor';
+import { Language, Phrases } from './model/language';
 
 (async () => {
   try {
+    let language = Language.getInstance();
     let result = await Requestor.get(RAE.url);
     let wotd:WOTD|null;
     if (result.success) {
@@ -17,7 +19,7 @@ import { Requestor } from './communications/requestor';
     } else {
       throw new Error(result.error);
     }
-    Printer.info("Today's word is: ", wotd.getName());
+    Printer.info(language.getPhrase(Phrases.wotd), wotd.getName());
     await Crawler.delay();
     result = await Requestor.get(RAE.getUrlFor(wotd.getPath()));
     if (result.success) {
@@ -28,7 +30,7 @@ import { Requestor } from './communications/requestor';
     wotd.getMeanings()?.forEach((m, i) => {
       Printer.info(((i < 10) ? " " + (i + 1) : i) + ".-", m);
     });
-    Printer.info("You can find more information in: ", RAE.getUrlFor(wotd.getPath()), true);
+    Printer.info(language.getPhrase(Phrases.info), RAE.getUrlFor(wotd.getPath()), true);
   } catch (error) {
     Printer.error(error);
   }
