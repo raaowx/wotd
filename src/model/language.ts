@@ -47,6 +47,13 @@ export class Language {
     return this.instance;
   }
   /**
+   * Get current language.
+   * @returns The current language.
+   */
+  getLanguage(): SupportedLanguages {
+    return this.language;
+  }
+  /**
    * Get phrase in the current language selection.
    * @param phrase Phrase we want.
    * @returns A string containing the phrase.
