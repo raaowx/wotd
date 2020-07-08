@@ -3,28 +3,22 @@
 <img
 src="./wotd.png" width="25">
 
-WOTD is a simple TypeScript script to download the published word of the day by RAE. It runs over NodeJS.
+WOTD is a script to download the word of the day published by a dictionary and its meanings. Dictionary will be choose based on system locale.  
 
-## RAE (Real Academia Española)
+## Supported Languages
 
-This script crawls the dictionary website published by the RAE public organism. The objective is to find the word of the day in the main webpage. After find it the script will also search for all the meanings of the word.
+Language|Dictionary|URL|Robots
+-|-|-|-
+Español (Spanish)|[Real Academia Española](https://www.rae.es)|[DLE](https://dle.rae.es)|[robots.txt](https://dle.rae.es/robots.txt)  
+English|[Oxford](https://global.oup.com)|[OLD](https://www.oxfordlearnersdictionaries.com)|[robots.txt](https://www.oxfordlearnersdictionaries.com/robots.txt)
 
-**Oficial web:** [DLE](https://dle.rae.es)  
-**Robots:** [robots.txt](https://dle.rae.es/robots.txt)  
+## Binary
 
-```plaintext
-User-agent: *
-Disallow:
-Crawl-delay: 1
-```
+### Download
 
-As the `robots` file shows, crawling the DLE is allowed with the certain conditions.
+Refer to [releases](https://github.com/raaowx/wotd/releases) to find the lastest version.
 
-## Download binary
-
-Refer to [releases](https://github.com/raaowx/wotd/releases) to find the last version.
-
-## Build binary
+### Build
 
 For building a stand-alone binary we will use the Node tool Pkg. I'll asume that you already have the following requesites in your system:
 
@@ -33,22 +27,20 @@ For building a stand-alone binary we will use the Node tool Pkg. I'll asume that
 * [rimraf](https://github.com/isaacs/rimraf)
 * [Pkg](https://github.com/zeit/pkg)
 
-### Steps
+#### Steps for all systems
 
 1. Clone repository: `git clone https://github.com/raaowx/wotd && cd wotd`
 2. Build the binary: `npm run pack`
 
-#### Build for specific OS
-
-##### Linux
+#### Steps for Linux
 
 `npm run pack:linux`
 
-##### MacOS
+#### Steps for MacOS
 
 `npm run pack:macos`
 
-##### Windows
+#### Steps for Windows
 
 `npm run pack:win`
 

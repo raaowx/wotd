@@ -6,6 +6,7 @@
 * **Fixed:** Missing color reset at the end of a printed line
 * **Update:** Build documentation
 * **Added:** Multi-language support with: Spanish, English, French, German, Portuguese
+* **Added:** Auto-select language based on system locale
 
 ## [2.0.0] - 2020.05.23
 
