@@ -1,16 +1,16 @@
 /** Class for the word of the day object. */
 export class WOTD {
   private name: string;
-  private path: string;
+  private url: string;
   private meanings?: string[];
   /**
    * Main constructor.
    * @param name The word.
-   * @param path The path in the RAE website for the word.
+   * @param url The url where word definition can be found.
    */
-  constructor(name: string, path: string) {
+  constructor(name: string, url: string) {
     this.name = name.substring(0, 1).toLocaleUpperCase() + name.substring(1);
-    this.path = path;
+    this.url = url;
   }
   /**
    * Getter.
@@ -23,8 +23,8 @@ export class WOTD {
    * Getter.
    * @returns The path in the RAE website for the word.
    */
-  getPath(): string {
-    return this.path;
+  getUrl(): string {
+    return this.url;
   }
   /**
    * Getter.
@@ -38,6 +38,20 @@ export class WOTD {
    * @param meanigns String array containing the meanings of the word.
    */
   setMeanings(meanigns: string[]): void {
+    this.meanings = meanigns;
+  }
+/**
+ * Format every meaning capitalising the first character of the phrase and appending a dot to the end. After that sets the property.
+ * @param meanigns String array containing the meanings of the word.
+ */
+  setMeaningsFormatted(meanigns: string[]): void {
+    meanigns.forEach((m, i, arr) => {
+      let str = m.substring(0, 1).toLocaleUpperCase() + m.substring(1);
+      if (!str.endsWith('.')) {
+        str = str + '.';
+      }
+      arr[i] = str;
+    });
     this.meanings = meanigns;
   }
 }
