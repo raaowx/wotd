@@ -27,9 +27,9 @@ export class Oxford implements Dictionary, Parser {
   findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
-    $('li.sense').each((_, e) => {
+    $('.entry > ol > li > .def').each((_, e) => {
       let m = $(e).clone();
-      meanings.push(m.children('.sensetop').children('.def').text());
+      meanings.push(m.text());
     });
     return meanings;
   }
