@@ -27,20 +27,20 @@
   },
   "homepage": "https://github.com/raaowx/wotd",
   "dependencies": {
-    "@types/cheerio": "^0.22.18",
+    "@types/cheerio": "^0.22.21",
     "@types/os-locale": "^4.0.2",
     "@types/request": "^2.48.5",
     "@types/request-promise": "^4.1.46",
     "cheerio": "^1.0.0-rc.3",
     "os-locale": "^5.0.0",
     "request": "^2.88.2",
-    "request-promise": "^4.2.5"
+    "request-promise": "^4.2.6"
   },
   "devDependencies": {
-    "@types/node": "^14.0.5",
-    "pkg": "^4.4.8",
+    "@types/node": "^14.6.2",
+    "pkg": "^4.4.9",
     "rimraf": "^3.0.2",
-    "ts-node": "^8.10.1",
-    "typescript": "^3.9.3"
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
   }
 }
