@@ -1,6 +1,6 @@
 import rp = require('request-promise');
 
-/** Class for handle communications with the [DLE](https://dle.rae.es).*/
+/** Class for handle communications with dictionaries.*/
 export class Requestor {
   /**
    * Perform a `GET` request to the given URL.
