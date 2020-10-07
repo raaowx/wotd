@@ -5,10 +5,10 @@ export class Crawler {
    * @param s Number of seconds to delay.
    * @returns Promise that will resolve after timeout conclude.
    */
-  static async delay(s?: number): Promise<unknown> {
-    const sec = (s) ? s : 3;    
+  static async delay(sec?: number): Promise<unknown> {
+    const s = (sec) ? sec : 3;
     return new Promise((resolve) => {
-      setTimeout(resolve, sec * 1000);
+      setTimeout(resolve, s * 1000);
     });
   }
 }

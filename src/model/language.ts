@@ -1,5 +1,4 @@
 import osLocale from  'os-locale';
-
 /** Class for handle multi-language support. */
 export class Language {
   private static instance: Language;
@@ -8,8 +7,9 @@ export class Language {
   /**
    * Main constructor
    */
-  private constructor() {
-    switch (osLocale.sync({ spawn: false}).split('-')[0]) {    
+  private constructor(language?: string) {
+    let l = (language) ? language : osLocale.sync({ spawn: false }).split('-')[0]
+    switch (l) {
       case 'es':
         this.language = SupportedLanguages.es;
         this.file = require('../languages/es').es;
@@ -40,9 +40,9 @@ export class Language {
    * Getter of an unique instance of this class.
    * @returns Lang object
    */
-  static getInstance(): Language {
+  static getInstance(language?: string): Language {
     if (!this.instance) {
-      this.instance = new Language();
+      this.instance = new Language(language);
     }
     return this.instance;
   }
@@ -74,11 +74,11 @@ export class Language {
  * - Portuguese
 */
 export enum SupportedLanguages {
-  es,
-  en,
-  fr,
-  de,
-  pt
+  en = "en",
+  fr = "fr",
+  es = "es",
+  de = "de",
+  pt = "pt"
 }
 
 /** List of static phrases that the software will print. */

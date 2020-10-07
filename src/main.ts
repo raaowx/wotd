@@ -5,8 +5,9 @@ import { Printer } from './utils/printer'
 import { Requestor } from './communications/requestor';
 import { Language, Phrases, SupportedLanguages } from './model/language';
 import { Oxford } from './model/oxford';
+import { CLA } from './utils/cla';
 
-async function fetchEs() {
+async function fetchEs(crawler?: number) {
   try {
     let rae = new RAE();
     let result = await Requestor.get(rae.url);
@@ -19,7 +20,7 @@ async function fetchEs() {
     } else {
       throw new Error(result.error);
     }
-    await Crawler.delay();
+    await Crawler.delay(crawler);
     result = await Requestor.get(wotd.getUrl());
     if (result.success) {
       wotd.setMeaningsFormatted(rae.findMeanings(result.html));
@@ -33,7 +34,7 @@ async function fetchEs() {
   }
 }
 
-async function fetchEn() {
+async function fetchEn(crawler?: number) {
   try {
     let oxford = new Oxford();
     let result = await Requestor.get(oxford.url);
@@ -46,7 +47,7 @@ async function fetchEn() {
     } else {
       throw new Error(result.error);
     }
-    await Crawler.delay();
+    await Crawler.delay(crawler);
     result = await Requestor.get(wotd.getUrl());
     if (result.success) {
       wotd.setMeaningsFormatted(oxford.findMeanings(result.html));
@@ -61,22 +62,22 @@ async function fetchEn() {
 }
 
 (async () => {
-  let language = Language.getInstance();
+  const cla = CLA.getInstance()
+  let language = Language.getInstance(cla.getLanguage());
   let wotd: WOTD|null = null;
   switch (language.getLanguage()) {
   case SupportedLanguages.es:
-    wotd = await fetchEs();
+    wotd = await fetchEs(cla.getCrawlerTimeout());
     break;
   case SupportedLanguages.en:
-    wotd = await fetchEn();
+    wotd = await fetchEn(cla.getCrawlerTimeout());
     break;
   case SupportedLanguages.fr: break;
   case SupportedLanguages.de: break;
   case SupportedLanguages.de: break;
   case SupportedLanguages.pt: break;
-  default: wotd = await fetchEs(); break;
+  default: wotd = await fetchEs(cla.getCrawlerTimeout()); break;
   }
-
   if (wotd) {
     Printer.info(language.getPhrase(Phrases.wotd), wotd.getName());
     wotd.getMeanings()?.forEach((m, i) => {
