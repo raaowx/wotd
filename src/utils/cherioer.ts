@@ -7,7 +7,7 @@ export class Cherioer {
    * @param html String containing the HTML web page.
    * @returns jQuery object.
    */
-  static convert(html: string): CheerioStatic {
+  static convert(html: string): cheerio.Root {
     return cheerio.load(html);
   }
 }

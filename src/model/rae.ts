@@ -34,7 +34,7 @@ export class RAE implements Dictionary, Parser {
   findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
-    $('.j').each((_, e) => {
+    $('.j').each((_: any, e: any) => {
       let m = $(e).clone();
       m.children().remove('.n_acep');
       m.children().remove('abbr');
