@@ -9,7 +9,7 @@ export class CLA {
    */
   private constructor() {
     this.args = yargs
-      .usage('WOTD is a binary that look for and downloads the word of the day from the selected dictionary. By default, the dictionary is choose based on operating system language. The language can be manually set.\n\nSupported languages (ISO-639-1):\n  * es : Spanish\n  * en : English\n\nUsage: wotd [-c] [-l]')
+      .usage('WOTD is a binary that look for and downloads the word of the day from the selected dictionary. By default, the dictionary is choose based on operating system language. The language can be manually set.\n\nSupported languages (ISO-639-1):\n  * es : Spanish\n  * en : English\n\nUsage: wotd [-c <seconds>] [-l <iso_code>]')
       .wrap(100)
       .strict()
       .options({
