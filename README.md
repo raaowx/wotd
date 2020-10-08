@@ -3,14 +3,16 @@
 <img
 src="./wotd.png" width="25">
 
-WOTD is a script to download the word of the day published by a dictionary and its meanings. Dictionary will be choose based on system locale.  
+WOTD is a binary that look for and downloads the word of the day from the selected dictionary. By
+default, the dictionary is choose based on operating system language. The language can be manually
+set.
 
 ## Supported Languages
 
-Language|Dictionary|URL|Robots
--|-|-|-
-Español (Spanish)|[Real Academia Española](https://www.rae.es)|[DLE](https://dle.rae.es)|[robots.txt](https://dle.rae.es/robots.txt)  
-English|[Oxford](https://global.oup.com)|[OLD](https://www.oxfordlearnersdictionaries.com)|[robots.txt](https://www.oxfordlearnersdictionaries.com/robots.txt)
+Language|ISO-639-1|Dictionary|URL|Robots
+-|:-:|-|:-:|:-:
+Español (Spanish)|es|[Real Academia Española](https://www.rae.es)|[DLE](https://dle.rae.es)|[robots.txt](https://dle.rae.es/robots.txt)  
+English|en|[Oxford](https://global.oup.com)|[OLD](https://www.oxfordlearnersdictionaries.com)|[robots.txt](https://www.oxfordlearnersdictionaries.com/robots.txt)
 
 ## Binary
 
