@@ -60,8 +60,10 @@ export class Language {
    */
   getPhrase(phrase: Phrases): string {
     switch (phrase) {
-      case Phrases.wotd: return this.file.wotd
+      case Phrases.wotd: return this.file.wotd;
       case Phrases.info: return this.file.info;
+      case Phrases.error: return this.file.error;
+      default: return "";
     }
   }
 }
@@ -78,11 +80,12 @@ export enum SupportedLanguages {
   fr = "fr",
   es = "es",
   de = "de",
-  pt = "pt"
+  pt = "pt",
 }
 
 /** List of static phrases that the software will print. */
 export enum Phrases {
   wotd,
-  info
+  info,
+  error,
 }
