@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [3.1.0] - 2021.05.29
+
+* __ADDED__
+  * Debug mode
+* __SECURITY__
+  * Update internal components (`node` & `packages`)
+
+---
+
 ## [3.0.0] - 2020.10.08
 
 * __ADDED__
