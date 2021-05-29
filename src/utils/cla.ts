@@ -3,21 +3,52 @@ import { SupportedLanguages } from "../model/language";
 /** Class for handle command line arguments */
 export class CLA {
   private static instance: CLA;
-  private args: yargs.Arguments
+  private static manual = `
+WOTD is a binary that look for and downloads the word of the day from the selected dictionary. By default, the dictionary is choose based on operating system language. The language can be manually set.
+    
+Supported languages (ISO-639-1):
+  * es : Spanish
+  * en : English
+
+Usage: wotd [-c <seconds>] [-l <iso_code>]'
+  ` as const;
+  private static clargs = {
+    h: { alias: 'help' },
+    v: { alias: 'version' },
+    d: {
+      alias: 'debug',
+      description: 'Error traces will be printed if any',
+      type: 'boolean',
+      coerce: (d: boolean) => { return (typeof d === 'boolean') ? d : false },
+      default: false,
+    },
+    c: {
+      alias: 'crawler',
+      description: 'Set seconds to wait between finding wotd and it\'s meanings',
+      type: 'number',
+      coerce: (c: number) => { return (typeof c === 'number') ? Math.trunc(Math.abs(c)) : undefined },
+      default: 3,
+    },
+    l: {
+      alias: 'language',
+      description: 'Set language of the word of the day search',
+      type: 'string',
+      choices: [SupportedLanguages.es, SupportedLanguages.en],
+      coerce: (l: string) => { return ((l) && typeof l === 'string') ? l.toLowerCase() : undefined },
+    },
+  } as const;
+  private args: any;
   /**
    * Main constructor
    */
   private constructor() {
     this.args = yargs
-      .usage('WOTD is a binary that look for and downloads the word of the day from the selected dictionary. By default, the dictionary is choose based on operating system language. The language can be manually set.\n\nSupported languages (ISO-639-1):\n  * es : Spanish\n  * en : English\n\nUsage: wotd [-c <seconds>] [-l <iso_code>]')
-      .wrap(100)
+      .locale('en')
+      .options(CLA.clargs)
       .strict()
-      .options({
-        h: { alias: 'help' },
-        v: { alias: 'version' },
-        c: { alias: 'crawler', description: 'Set seconds to wait between finding wotd and it\'s meanings', type: 'number', coerce: (c) => { return (typeof c === 'number') ? Math.trunc(Math.abs(c)) : null } },
-        l: { alias: 'language', description: 'Set language of the word of the day search', type: 'string', choices: [SupportedLanguages.es, SupportedLanguages.en], coerce: (l: string) => { return (typeof l === 'string') ? l.toLowerCase() : null } }
-      }).argv;
+      .usage(CLA.manual)
+      .wrap(yargs.terminalWidth())
+      .argv;
   }
   /**
    * Getter of an unique instance of the class.
@@ -28,6 +59,13 @@ export class CLA {
       this.instance = new CLA();
     }
     return this.instance;
+  }
+  /**
+   * Get debug mode status
+   * @returns Boolean indicating if debug mode is active
+   */
+  isDebugActive(): boolean {
+    return (this.args.d) ? this.args.d as boolean : false;
   }
   /**
    * Get crawler timeout

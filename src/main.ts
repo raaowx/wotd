@@ -29,8 +29,7 @@ async function fetchEs(crawler?: number) {
     }
     return wotd;
   } catch (error) {
-    Printer.error(error);
-    return null;
+    throw error;
   }
 }
 
@@ -56,8 +55,7 @@ async function fetchEn(crawler?: number) {
     }
     return wotd;
   } catch (error) {
-    Printer.error(error);
-    return null;
+    throw error;
   }
 }
 
@@ -65,24 +63,33 @@ async function fetchEn(crawler?: number) {
   const cla = CLA.getInstance()
   let language = Language.getInstance(cla.getLanguage());
   let wotd: WOTD|null = null;
-  switch (language.getLanguage()) {
-  case SupportedLanguages.es:
-    wotd = await fetchEs(cla.getCrawlerTimeout());
-    break;
-  case SupportedLanguages.en:
-    wotd = await fetchEn(cla.getCrawlerTimeout());
-    break;
-  case SupportedLanguages.fr: break;
-  case SupportedLanguages.de: break;
-  case SupportedLanguages.de: break;
-  case SupportedLanguages.pt: break;
-  default: wotd = await fetchEs(cla.getCrawlerTimeout()); break;
-  }
-  if (wotd) {
-    Printer.info(language.getPhrase(Phrases.wotd), wotd.getName());
-    wotd.getMeanings()?.forEach((m, i) => {
-      Printer.info(((i < 10) ? " " + (i + 1) : i) + ".-", m);
-    });
-    Printer.info(language.getPhrase(Phrases.info), wotd.getUrl(), true);
+  try {
+    switch (language.getLanguage()) {
+    case SupportedLanguages.es:
+      wotd = await fetchEs(cla.getCrawlerTimeout());
+      break;
+    case SupportedLanguages.en:
+      wotd = await fetchEn(cla.getCrawlerTimeout());
+      break;
+    case SupportedLanguages.fr: break;
+    case SupportedLanguages.de: break;
+    case SupportedLanguages.de: break;
+    case SupportedLanguages.pt: break;
+    default: wotd = await fetchEs(cla.getCrawlerTimeout()); break;
+    }
+    if (wotd) {
+      Printer.info(language.getPhrase(Phrases.wotd), wotd.getName());
+      wotd.getMeanings()?.forEach((m, i) => {
+        Printer.info(((i < 10) ? " " + (i + 1) : i) + ".-", m);
+      });
+      Printer.info(language.getPhrase(Phrases.info), wotd.getUrl(), true);
+    } else {
+      Printer.error(language.getPhrase(Phrases.error));
+    }    
+  } catch (error) {
+    Printer.error(language.getPhrase(Phrases.error));
+    if (cla.isDebugActive()) {
+      Printer.error(error);
+    }
   }
 })();

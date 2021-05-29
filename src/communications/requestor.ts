@@ -12,17 +12,17 @@ export class Requestor {
    */
   static async get(url:string): Promise<{success: boolean, html: string, error: string}> {
     return rp(url)
-      .then((html:string) => {
+      .then((html: string) => {
         return {
           success: true,
           html: html,
-          error: ""
+          error: "",
         }
-      }).catch((error:string) => {
+      }).catch((error: string) => {
         return {
           success: false,
           html: "",
-          error: error
+          error: error,
         }
       });
   }
