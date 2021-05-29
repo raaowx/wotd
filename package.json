@@ -1,7 +1,7 @@
 {
   "name": "wotd",
-  "version": "2.0.0",
-  "description": "WOTD is a simple TypeScript script to download the published word of the day by RAE",
+  "version": "3.1.0",
+  "description": "WOTD is a binary that look for and downloads the word of the day from the selected dictionary. By default, the dictionary is choose based on operating system language. The language can be manually set.",
   "main": "main.js",
   "bin": "dist/main.js",
   "scripts": {
