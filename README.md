@@ -14,6 +14,10 @@ Language|ISO-639-1|Dictionary|URL|Robots
 Español (Spanish)|es|[Real Academia Española](https://www.rae.es)|[DLE](https://dle.rae.es)|[robots.txt](https://dle.rae.es/robots.txt)  
 English|en|[Oxford](https://global.oup.com)|[OLD](https://www.oxfordlearnersdictionaries.com)|[robots.txt](https://www.oxfordlearnersdictionaries.com/robots.txt)
 
+## Usage
+
+Execute `wotd -h` to see the help message.
+
 ## Binary
 
 ### Download
