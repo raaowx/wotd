@@ -2,14 +2,14 @@
   "name": "wotd",
   "version": "3.1.0",
   "description": "WOTD is a binary that look for and downloads the word of the day from the selected dictionary. By default, the dictionary is choose based on operating system language. The language can be manually set.",
-  "main": "main.js",
+  "exports": "./main.js",
   "bin": "dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run clean && npm run build && node dist/main.js",
-    "start:dev": "ts-node src/main.ts",
+    "start:dev": "npm run compile && node dist/main.js",
     "build": "npm ci && npm run compile",
-    "clean": "rimraf dist release",
+    "clean": "rimraf dist release node_modules",
     "compile": "tsc -p tsconfig.json",
     "pack": "npm run clean && npm run build && pkg --out-path release .",
     "pack:linux": "npm run clean && npm run build && pkg -t node16-linux-x64 --out-path release .",
@@ -27,22 +27,22 @@
   },
   "homepage": "https://github.com/raaowx/wotd",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "os-locale": "^5.0.0",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.6",
-    "yargs": "^17.0.1"
+    "axios": "^0.22.0",
+    "cheerio": "^1.0.0-rc.10",
+    "os-locale": "^6.0.1",
+    "yargs": "^17.2.1"
   },
   "devDependencies": {
-    "@types/cheerio": "^0.22.22",
-    "@types/node": "^15.6.0",
-    "@types/os-locale": "^4.0.2",
-    "@types/request": "^2.48.5",
-    "@types/request-promise": "^4.1.46",
-    "@types/yargs": "^17.0.0",
-    "pkg": "^5.2.0",
+    "@types/cheerio": "^0.22.30",
+    "@types/node": "^16.10.3",
+    "@types/yargs": "^17.0.3",
+    "pkg": "^5.3.3",
     "rimraf": "^3.0.2",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.2.4"
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  },
+  "type": "module",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   }
 }

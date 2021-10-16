@@ -1,5 +1,5 @@
-import cheerio = require('cheerio');
-import { WOTD } from "../model/wotd";
+import * as cheerio from 'cheerio';
+import { WOTD } from "../model/wotd.js";
 /** Class that handles the HTML parsing. */
 export class Cherioer {
   /**

@@ -1,4 +1,4 @@
-import rp = require('request-promise');
+import axios from 'axios';
 
 /** Class for handle communications with dictionaries.*/
 export class Requestor {
@@ -11,19 +11,19 @@ export class Requestor {
    * - `error`: The error ocurred. Can be an empty string.
    */
   static async get(url:string): Promise<{success: boolean, html: string, error: string}> {
-    return rp(url)
-      .then((html: string) => {
-        return {
-          success: true,
-          html: html,
-          error: "",
-        }
-      }).catch((error: string) => {
-        return {
-          success: false,
-          html: "",
-          error: error,
-        }
-      });
+    try {
+      const response = await axios.get(url);
+      return {
+        success: true,
+        html: response.data,
+        error: "",
+      }
+    } catch (error) {
+      return {
+        success: false,
+        html: "",
+        error: `${error}`,
+      }
+    }
   }
 }

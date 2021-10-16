@@ -35,23 +35,23 @@ export class WOTD {
   }
   /**
    * Setter.
-   * @param meanigns String array containing the meanings of the word.
+   * @param meanings String array containing the meanings of the word.
    */
-  setMeanings(meanigns: string[]): void {
-    this.meanings = meanigns;
+  setMeanings(meanings: string[]): void {
+    this.meanings = meanings;
   }
 /**
  * Format every meaning capitalising the first character of the phrase and appending a dot to the end. After that sets the property.
- * @param meanigns String array containing the meanings of the word.
+ * @param meanings String array containing the meanings of the word.
  */
-  setMeaningsFormatted(meanigns: string[]): void {
-    meanigns.forEach((m, i, arr) => {
+  setMeaningsFormatted(meanings: string[]): void {
+    meanings.forEach((m, i, arr) => {
       let str = m.substring(0, 1).toLocaleUpperCase() + m.substring(1);
       if (!str.endsWith('.')) {
         str = str + '.';
       }
       arr[i] = str;
     });
-    this.meanings = meanigns;
+    this.meanings = meanings;
   }
 }

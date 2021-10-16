@@ -1,4 +1,10 @@
-import osLocale from  'os-locale';
+import { osLocaleSync } from "os-locale";
+import { es } from "../languages/es.js";
+import { en } from "../languages/en.js";
+import { fr } from "../languages/fr.js";
+import { de } from "../languages/de.js";
+import { pt } from "../languages/pt.js";
+
 /** Class for handle multi-language support. */
 export class Language {
   private static instance: Language;
@@ -8,31 +14,30 @@ export class Language {
    * Main constructor
    */
   private constructor(language?: string) {
-    let l = (language) ? language : osLocale.sync({ spawn: false }).split('-')[0]
+    let l = language;
+    if (!l) {
+      l = osLocaleSync({ spawn: false }).split("-")[0];
+    }
     switch (l) {
-      case 'es':
-        this.language = SupportedLanguages.es;
-        this.file = require('../languages/es').es;
-        break;
       case 'en':
         this.language = SupportedLanguages.en;
-        this.file = require('../languages/en').en;
+        this.file = en;
         break;
       case 'fr':
         this.language = SupportedLanguages.fr;
-        this.file = require('../languages/fr').fr;
+        this.file = fr;
         break;
       case 'de':
         this.language = SupportedLanguages.de;
-        this.file = require('../languages/de').de;
+        this.file = de;
         break;
       case 'pt':
         this.language = SupportedLanguages.pt;
-        this.file = require('../languages/pt').pt;
+        this.file = pt;
         break;
       default:
         this.language = SupportedLanguages.es;
-        this.file = require('../languages/es').es;
+        this.file = es;
         break;
     }
   }

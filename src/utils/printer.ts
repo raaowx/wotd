@@ -1,4 +1,4 @@
-import { Color } from '../model/color';
+import { Color } from '../model/color.js';
 /** Module with functions for printing results to console. */
 export module Printer {
   /**

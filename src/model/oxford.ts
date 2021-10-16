@@ -1,6 +1,6 @@
-import { Dictionary } from "./dictionary";
-import { Parser, Cherioer } from "../utils/cherioer";
-import { WOTD } from "./wotd"; 
+import { Dictionary } from "./dictionary.js";
+import { Parser, Cherioer } from "../utils/cherioer.js";
+import { WOTD } from "./wotd.js"; 
 /** Class containing the information about the [Oxford](https://www.oxfordlearnersdictionaries.com) online dictionary */
 export class Oxford implements Dictionary, Parser {
   readonly url: string = "https://www.oxfordlearnersdictionaries.com"

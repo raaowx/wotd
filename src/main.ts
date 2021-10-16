@@ -1,11 +1,12 @@
-import { RAE } from './model/rae';
-import { WOTD } from './model/wotd';
-import { Crawler } from './utils/crawler';
-import { Printer } from './utils/printer'
-import { Requestor } from './communications/requestor';
-import { Language, Phrases, SupportedLanguages } from './model/language';
-import { Oxford } from './model/oxford';
-import { CLA } from './utils/cla';
+import { RAE } from './model/rae.js';
+import { WOTD } from './model/wotd.js';
+import { Crawler } from './utils/crawler.js';
+import { Printer } from './utils/printer.js'
+import { Requestor } from './communications/requestor.js';
+import { Language, Phrases, SupportedLanguages } from './model/language.js';
+import { Oxford } from './model/oxford.js';
+import { CLA } from './utils/cla.js';
+import { error } from 'console';
 
 async function fetchEs(crawler?: number) {
   try {
@@ -89,7 +90,8 @@ async function fetchEn(crawler?: number) {
   } catch (error) {
     Printer.error(language.getPhrase(Phrases.error));
     if (cla.isDebugActive()) {
-      Printer.error(error);
+      const errorStr: string = error as string;
+      Printer.error(errorStr);
     }
   }
 })();
