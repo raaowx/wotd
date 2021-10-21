@@ -1,11 +1,24 @@
 {
   "name": "wotd",
-  "version": "3.1.0",
+  "homepage": "https://github.com/raaowx/wotd",
+  "version": "4.0.0",
   "description": "WOTD is a binary that look for and downloads the word of the day from the selected dictionary. By default, the dictionary is choose based on operating system language. The language can be manually set.",
-  "exports": "./main.js",
+  "author": "raaowx",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/raaowx/wotd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raaowx/wotd/issues"
+  },
   "bin": "dist/main.js",
+  "type": "module",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "exports": "./main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run clean && npm run build && node dist/main.js",
     "start:dev": "npm run compile && node dist/main.js",
     "build": "npm ci && npm run compile",
@@ -16,16 +29,6 @@
     "pack:macos": "npm run clean && npm run build && pkg -t node16-macos-x64 --out-path release .",
     "pack:win": "npm run clean && npm run build && pkg -t node16-win-x64 --out-path release ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/raaowx/wotd.git"
-  },
-  "author": "raaowx",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/raaowx/wotd/issues"
-  },
-  "homepage": "https://github.com/raaowx/wotd",
   "dependencies": {
     "axios": "^0.22.0",
     "cheerio": "^1.0.0-rc.10",
@@ -40,9 +43,5 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
-  },
-  "type": "module",
-  "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   }
 }
