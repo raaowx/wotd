@@ -1,12 +1,12 @@
-import { RAE } from './model/rae.js';
-import { WOTD } from './model/wotd.js';
+import { CLA } from './utils/cla.js';
 import { Crawler } from './utils/crawler.js';
 import { Printer } from './utils/printer.js'
 import { Requestor } from './communications/requestor.js';
-import { Language, Phrases, SupportedLanguages } from './model/language.js';
-import { Oxford } from './model/oxford.js';
-import { CLA } from './utils/cla.js';
-import { error } from 'console';
+import { Language, Phrases } from './model/language.js';
+import { SupportedDictionaries } from './model/dictionary.js';
+import { WOTD } from './model/wotd.js';
+import { RAE } from './model/dictionaries/rae.js';
+import { Oxford } from './model/dictionaries/oxford.js';
 
 async function fetchEs(crawler?: number) {
   try {
@@ -65,18 +65,13 @@ async function fetchEn(crawler?: number) {
   let language = Language.getInstance(cla.getLanguage());
   let wotd: WOTD|null = null;
   try {
-    switch (language.getLanguage()) {
-    case SupportedLanguages.es:
-      wotd = await fetchEs(cla.getCrawlerTimeout());
-      break;
-    case SupportedLanguages.en:
-      wotd = await fetchEn(cla.getCrawlerTimeout());
-      break;
-    case SupportedLanguages.fr: break;
-    case SupportedLanguages.de: break;
-    case SupportedLanguages.de: break;
-    case SupportedLanguages.pt: break;
-    default: wotd = await fetchEs(cla.getCrawlerTimeout()); break;
+    switch (cla.getDictionary()) {
+      case SupportedDictionaries.rae:
+        wotd = await fetchEs(cla.getCrawlerTimeout());
+        break;
+      default:
+        wotd = await fetchEn(cla.getCrawlerTimeout());
+        break;
     }
     if (wotd) {
       Printer.info(language.getPhrase(Phrases.wotd), wotd.getName());

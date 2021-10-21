@@ -1,6 +1,6 @@
-import { Dictionary } from "./dictionary.js";
-import { Parser, Cherioer } from "../utils/cherioer.js";
-import { WOTD } from "./wotd.js";
+import { Dictionary } from "../dictionary.js";
+import { WOTD } from "../wotd.js";
+import { Parser, Cherioer } from "../../utils/cherioer.js";
 /** Class containing the information about the [RAE](https://rae.es) online dictionary. */
 export class RAE implements Dictionary, Parser {
   readonly url: string = "https://dle.rae.es";
