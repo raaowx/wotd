@@ -40,7 +40,7 @@ Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>]'
       alias: "language",
       description: "Set language of the output (wotd and it's meanings will be shown in the dictionary's language)",
       type: "string",
-      choices: [SupportedLanguages.es, SupportedLanguages.en],
+      choices: Object.keys(SupportedLanguages).map(key => SupportedLanguages[key as keyof typeof SupportedLanguages]),
       coerce: (l: string) => {
         return l && typeof l === "string" ? l.toLowerCase() : undefined;
       },
@@ -49,7 +49,7 @@ Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>]'
       alias: "dictionary",
       description: "Set in which dictionary the word of the day is going to be search",
       type: "string",
-      choices: [SupportedDictionaries.oxford, SupportedDictionaries.rae],
+      choices: Object.keys(SupportedDictionaries).map(key => SupportedDictionaries[key as keyof typeof SupportedDictionaries]),
       coerce: (l: string) => {
         return l && typeof l === "string" ? l.toLowerCase() : undefined;
       },
