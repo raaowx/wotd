@@ -2,7 +2,8 @@
 export class WOTD {
   private name: string;
   private url: string;
-  private meanings?: string[];
+  private meanings?: string[];
+  public static CREATION_ERROR: string = "WOTD can't be created.";
   /**
    * Main constructor.
    * @param name The word.
@@ -37,18 +38,18 @@ export class WOTD {
    * Setter.
    * @param meanings String array containing the meanings of the word.
    */
-  setMeanings(meanings: string[]): void {
+  setMeanings(meanings: string[]): void {
     this.meanings = meanings;
   }
-/**
- * Format every meaning capitalising the first character of the phrase and appending a dot to the end. After that sets the property.
- * @param meanings String array containing the meanings of the word.
- */
+  /**
+   * Format every meaning capitalising the first character of the phrase and appending a dot to the end. After that sets the property.
+   * @param meanings String array containing the meanings of the word.
+   */
   setMeaningsFormatted(meanings: string[]): void {
     meanings.forEach((m, i, arr) => {
       let str = m.substring(0, 1).toLocaleUpperCase() + m.substring(1);
-      if (!str.endsWith('.')) {
-        str = str + '.';
+      if (!str.endsWith(".")) {
+        str = str + ".";
       }
       arr[i] = str;
     });

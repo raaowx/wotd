@@ -1,5 +1,5 @@
 import yargs from "yargs";
-import { SupportedDictionaries } from "../model/dictionary.js";
+import { SupportedDictionaries } from "../model/dictionaries.js";
 import { SupportedLanguages } from "../model/language.js";
 /** Class for handle command line arguments */
 export class CLA {
