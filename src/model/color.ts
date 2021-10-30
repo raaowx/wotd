@@ -1,4 +1,4 @@
-/** Colors and string modification.  
+/** Colors and string modification.
  * _Available colors:_
  * - Black
  * - Blue
@@ -7,8 +7,8 @@
  * - Magenta
  * - Red
  * - White
- * - Yellow  
- * 
+ * - Yellow
+ *
  * _Available modifiers:_
  * - Blink
  * - Bright
@@ -17,8 +17,8 @@
  * - Reset
  * - Reverse
  * - Underscore
-*/
-export enum Color {
+ */
+export enum Color {
   black = "\x1b[30m",
   blue = "\x1b[34m",
   cyan = "\x1b[36m",
@@ -33,5 +33,5 @@ export enum Color {
   hidden = "\x1b[8m",
   reset = "\x1b[0m",
   reverse = "\x1b[7m",
-  underscore = "\x1b[4m"
+  underscore = "\x1b[4m",
 }

@@ -55,7 +55,7 @@ export class Language {
    * Get current language.
    * @returns The current language.
    */
-  getLanguage(): SupportedLanguages {
+  getLanguage(): SupportedLanguages {
     return this.language;
   }
   /**
@@ -65,10 +65,14 @@ export class Language {
    */
   getPhrase(phrase: Phrases): string {
     switch (phrase) {
-      case Phrases.wotd: return this.file.wotd;
-      case Phrases.info: return this.file.info;
-      case Phrases.error: return this.file.error;
-      default: return "";
+      case Phrases.wotd:
+        return this.file.wotd;
+      case Phrases.info:
+        return this.file.info;
+      case Phrases.error:
+        return this.file.error;
+      default:
+        return "";
     }
   }
 }
@@ -79,7 +83,7 @@ export class Language {
  * - German
  * - French
  * - Portuguese
-*/
+ */
 export enum SupportedLanguages {
   en = "en",
   es = "es",

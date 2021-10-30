@@ -45,7 +45,8 @@ export class Duden implements Dictionary, Fetcher, Parser {
   findWOTD(html: string): WOTD | null {
     let $ = Cherioer.convert(html);
     let name = $("#block-wordoftheday section header h2 a")?.text();
-    let url = this.url + $("#block-wordoftheday section header h2 a")?.attr("href");
+    let url =
+      this.url + $("#block-wordoftheday section header h2 a")?.attr("href");
     if (name && url) {
       return new WOTD(name, url);
     }
@@ -59,7 +60,7 @@ export class Duden implements Dictionary, Fetcher, Parser {
   findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
-    $("#bedeutungen ol li div").each((_, e) => {
+    $("#bedeutungen ol li div").each((_, e) => {
       let m = $(e).clone();
       meanings.push(m.text());
     });

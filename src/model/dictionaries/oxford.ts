@@ -1,8 +1,8 @@
-import { WOTD } from "../wotd.js"; 
+import { WOTD } from "../wotd.js";
 import { Cherioer } from "../../utils/cherioer.js";
 import { Dictionary } from "../../interfaces/dictionary.js";
 import { Fetcher } from "../../interfaces/fetcher.js";
-import { Parser } from "../../interfaces/parser.js"
+import { Parser } from "../../interfaces/parser.js";
 import { Requestor } from "../../communications/requestor.js";
 import { Crawler } from "../../utils/crawler.js";
 /** Class containing the information about the [Oxford](https://www.oxfordlearnersdictionaries.com) online dictionary */

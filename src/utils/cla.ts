@@ -43,7 +43,8 @@ Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>]'
     },
     l: {
       alias: "language",
-      description: "Set language of the output (wotd and it's meanings will be shown in the dictionary's language)",
+      description:
+        "Set language of the output (wotd and it's meanings will be shown in the dictionary's language)",
       type: "string",
       choices: Object.keys(SupportedLanguages).map(
         (key) => SupportedLanguages[key as keyof typeof SupportedLanguages]
@@ -54,7 +55,8 @@ Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>]'
     },
     d: {
       alias: "dictionary",
-      description: "Set in which dictionary the word of the day is going to be search",
+      description:
+        "Set in which dictionary the word of the day is going to be search",
       type: "string",
       choices: Object.keys(SupportedDictionaries).map(
         (key) =>

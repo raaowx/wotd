@@ -1,4 +1,4 @@
-import { Color } from '../model/color.js';
+import { Color } from "../model/color.js";
 /** Module with functions for printing results to console. */
 export module Printer {
   /**
@@ -11,7 +11,16 @@ export module Printer {
     if (cr) {
       console.log();
     }
-    console.log(Color.dim + Color.white + staticT + Color.reset + " " + Color.white + dynamicT + Color.reset);
+    console.log(
+      Color.dim +
+        Color.white +
+        staticT +
+        Color.reset +
+        " " +
+        Color.white +
+        dynamicT +
+        Color.reset
+    );
   }
   /**
    * For printing errors
@@ -20,6 +29,6 @@ export module Printer {
   export function error(error: string): void {
     console.log(Color.red);
     console.error(error);
-    console.log(Color.reset);    
+    console.log(Color.reset);
   }
 }
