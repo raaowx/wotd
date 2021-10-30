@@ -8,12 +8,17 @@ export class CLA {
 WOTD is a binary that look for and downloads the word of the day from the selected dictionary.
     
 Supported languages (ISO-639-1):
-  * es : Spanish
   * en : English
+  * es : Spanish
+  * de : German
+  * fr : French
+  * pt : Portuguese
 
 Supported dictionaries:
-  * oxford : Oxford (https://www.oxfordlearnersdictionaries.com)
-  * rae    : RAE (https://dle.rae.es)
+  * oxford   : Oxford   (https://www.oxfordlearnersdictionaries.com)
+  * rae      : RAE      (https://dle.rae.es)
+  * dude     : Duden    (https://www.duden.de)
+  * urban    : Urban    (https://www.urbandictionary.com)
 
 Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>]'
   ` as const;
@@ -40,7 +45,9 @@ Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>]'
       alias: "language",
       description: "Set language of the output (wotd and it's meanings will be shown in the dictionary's language)",
       type: "string",
-      choices: Object.keys(SupportedLanguages).map(key => SupportedLanguages[key as keyof typeof SupportedLanguages]),
+      choices: Object.keys(SupportedLanguages).map(
+        (key) => SupportedLanguages[key as keyof typeof SupportedLanguages]
+      ),
       coerce: (l: string) => {
         return l && typeof l === "string" ? l.toLowerCase() : undefined;
       },
@@ -49,7 +56,10 @@ Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>]'
       alias: "dictionary",
       description: "Set in which dictionary the word of the day is going to be search",
       type: "string",
-      choices: Object.keys(SupportedDictionaries).map(key => SupportedDictionaries[key as keyof typeof SupportedDictionaries]),
+      choices: Object.keys(SupportedDictionaries).map(
+        (key) =>
+          SupportedDictionaries[key as keyof typeof SupportedDictionaries]
+      ),
       coerce: (l: string) => {
         return l && typeof l === "string" ? l.toLowerCase() : undefined;
       },

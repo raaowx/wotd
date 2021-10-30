@@ -1,17 +1,17 @@
-import { WOTD } from "../wotd.js"; 
+import { WOTD } from "../wotd.js";
 import { Cherioer } from "../../utils/cherioer.js";
 import { Dictionary } from "../../interfaces/dictionary.js";
 import { Fetcher } from "../../interfaces/fetcher.js";
-import { Parser } from "../../interfaces/parser.js"
+import { Parser } from "../../interfaces/parser.js";
 import { Requestor } from "../../communications/requestor.js";
 import { Crawler } from "../../utils/crawler.js";
-/** Class containing the information about the [Oxford](https://www.oxfordlearnersdictionaries.com) online dictionary */
-export class Oxford implements Dictionary, Fetcher, Parser {
-  readonly url: string = "https://www.oxfordlearnersdictionaries.com";
+/** Class containing the information about the [Duden](https://www.duden.de/) online dictionary */
+export class Duden implements Dictionary, Fetcher, Parser {
+  readonly url: string = "https://www.duden.de";
   /**
    * Fetch the word of the day from the dictionary.
    * @param crawler Number of seconds to wait between requests.
-   * @returns WOTD object containing final result.
+   * @return WOTD object containing final result.
    */
   async fetch(crawler?: number): Promise<WOTD | null> {
     try {
@@ -30,7 +30,7 @@ export class Oxford implements Dictionary, Fetcher, Parser {
       if (result.success) {
         wotd.setMeaningsFormatted(this.findMeanings(result.html));
       } else {
-        throw new Error(result.error);
+        throw new Error(WOTD.CREATION_ERROR);
       }
       return wotd;
     } catch (error) {
@@ -44,8 +44,8 @@ export class Oxford implements Dictionary, Fetcher, Parser {
    */
   findWOTD(html: string): WOTD | null {
     let $ = Cherioer.convert(html);
-    let name = $(".headword div")?.text();
-    let url = $(".headword")?.attr("href");
+    let name = $("#block-wordoftheday section header h2 a")?.text();
+    let url = this.url + $("#block-wordoftheday section header h2 a")?.attr("href");
     if (name && url) {
       return new WOTD(name, url);
     }
@@ -59,7 +59,7 @@ export class Oxford implements Dictionary, Fetcher, Parser {
   findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
-    $(".entry > ol > li .def").each((_, e) => {
+    $("#bedeutungen ol li div").each((_, e) => {
       let m = $(e).clone();
       meanings.push(m.text());
     });

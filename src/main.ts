@@ -5,6 +5,8 @@ import { SupportedDictionaries } from "./model/dictionaries.js";
 import { WOTD } from './model/wotd.js';
 import { RAE } from './model/dictionaries/rae.js';
 import { Oxford } from './model/dictionaries/oxford.js';
+import { Duden } from './model/dictionaries/duden.js';
+import { Urban } from './model/dictionaries/urban.js';
 
 (async () => {
   const cla = CLA.getInstance()
@@ -13,12 +15,16 @@ import { Oxford } from './model/dictionaries/oxford.js';
   try {
     switch (cla.getDictionary()) {
       case SupportedDictionaries.rae:
-        let rae = new RAE();
-        wotd = await rae.fetch(cla.getCrawlerTimeout());
+        wotd = await new RAE().fetch(cla.getCrawlerTimeout());
+        break;
+      case SupportedDictionaries.duden:
+        wotd = await new Duden().fetch(cla.getCrawlerTimeout());
+        break;
+      case SupportedDictionaries.urban:
+        wotd = await new Urban().fetch(cla.getCrawlerTimeout());
         break;
       default:
-        let oxford = new Oxford();
-        wotd = await oxford.fetch(cla.getCrawlerTimeout());
+        wotd = await new Oxford().fetch(cla.getCrawlerTimeout());
         break;
     }
     if (wotd) {

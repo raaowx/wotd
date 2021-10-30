@@ -1,8 +1,8 @@
 import { osLocaleSync } from "os-locale";
-import { es } from "../languages/es.js";
 import { en } from "../languages/en.js";
-import { fr } from "../languages/fr.js";
+import { es } from "../languages/es.js";
 import { de } from "../languages/de.js";
+import { fr } from "../languages/fr.js";
 import { pt } from "../languages/pt.js";
 
 /** Class for handle multi-language support. */
@@ -19,25 +19,25 @@ export class Language {
       l = osLocaleSync({ spawn: false }).split("-")[0];
     }
     switch (l) {
-      case 'en':
-        this.language = SupportedLanguages.en;
-        this.file = en;
+      case "es":
+        this.language = SupportedLanguages.es;
+        this.file = es;
         break;
-      case 'fr':
-        this.language = SupportedLanguages.fr;
-        this.file = fr;
-        break;
-      case 'de':
+      case "de":
         this.language = SupportedLanguages.de;
         this.file = de;
         break;
-      case 'pt':
+      case "fr":
+        this.language = SupportedLanguages.fr;
+        this.file = fr;
+        break;
+      case "pt":
         this.language = SupportedLanguages.pt;
         this.file = pt;
         break;
       default:
-        this.language = SupportedLanguages.es;
-        this.file = es;
+        this.language = SupportedLanguages.en;
+        this.file = en;
         break;
     }
   }
@@ -74,17 +74,17 @@ export class Language {
 }
 
 /** Supported languages for output static text:
- * - Spanish
  * - English
- * - French
+ * - Spanish
  * - German
+ * - French
  * - Portuguese
 */
 export enum SupportedLanguages {
   en = "en",
-  fr = "fr",
   es = "es",
   de = "de",
+  fr = "fr",
   pt = "pt",
 }
 
