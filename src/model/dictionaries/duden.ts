@@ -45,10 +45,14 @@ export class Duden implements Dictionary, Fetcher, Parser {
   findWOTD(html: string): WOTD | null {
     let $ = Cherioer.convert(html);
     let name = $("#block-wordoftheday section header h2 a")?.text();
-    let url =
-      this.url + $("#block-wordoftheday section header h2 a")?.attr("href");
-    if (name && url) {
-      return new WOTD(name, url);
+    /**
+     * ! NOTE: For some unknown reason the downloaded HTML contains the WOTD with soft hyphens.
+     * ! We have to remove them in order to get a clean word.
+     */
+    let updatedName = name.replace(/\u00AD/g, "");
+    let url = this.url + $("#block-wordoftheday section header h2 a")?.attr("href");
+    if (updatedName && url) {
+      return new WOTD(updatedName, url);
     }
     return null;
   }
