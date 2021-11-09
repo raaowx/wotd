@@ -2,7 +2,7 @@
   "name": "wotd",
   "homepage": "https://github.com/raaowx/wotd",
   "version": "4.0.0",
-  "description": "WOTD is a binary that look for and downloads the word of the day from the selected dictionary. By default, the dictionary is choose based on operating system language. The language can be manually set.",
+  "description": "WOTD is a binary that look for and downloads the word of the day from the selected dictionary.",
   "author": "raaowx",
   "license": "MIT",
   "repository": {
@@ -19,15 +19,12 @@
   },
   "exports": "./main.js",
   "scripts": {
-    "start": "npm run clean && npm run build && node dist/main.js",
-    "start:dev": "npm run compile && node dist/main.js",
+    "start": "node distribution/main.js",
+    "clean": "rimraf node_modules types distribution minified binaries",
     "build": "npm ci && npm run compile",
-    "clean": "rimraf dist release node_modules",
     "compile": "tsc -p tsconfig.json",
-    "pack": "npm run clean && npm run build && pkg --out-path release .",
-    "pack:linux": "npm run clean && npm run build && pkg -t node16-linux-x64 --out-path release .",
-    "pack:macos": "npm run clean && npm run build && pkg -t node16-macos-x64 --out-path release .",
-    "pack:win": "npm run clean && npm run build && pkg -t node16-win-x64 --out-path release ."
+    "minify": "ncc build distribution/main.js -o minified",
+    "pack": "echo 'WIP'"
   },
   "dependencies": {
     "axios": "^0.22.0",

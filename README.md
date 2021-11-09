@@ -7,24 +7,36 @@ WOTD is a binary that look for and downloads the word of the day from the select
 
 - [WOTD](#wotd)
   - [Supported Languages](#supported-languages)
+  - [Supported Dictionaries](#supported-dictionaries)
   - [Usage](#usage)
   - [Binary](#binary)
     - [Download](#download)
     - [Build](#build)
-      - [Steps for all systems](#steps-for-all-systems)
-      - [Steps for Linux](#steps-for-linux)
-      - [Steps for MacOS](#steps-for-macos)
-      - [Steps for Windows](#steps-for-windows)
+      - [Steps](#steps)
   - [Attributions](#attributions)
     - [Project Icon](#project-icon)
   - [License & Copyright](#license--copyright)
 
 ## Supported Languages
 
-Language|ISO-639-1|Dictionary|Robots
--|:-:|-|:-:
-English|en|[Oxford](https://www.oxfordlearnersdictionaries.com)|[robots.txt](https://www.oxfordlearnersdictionaries.com/robots.txt)
-Español (Spanish)|es|[RAE](https://dle.rae.es)|[robots.txt](https://dle.rae.es/robots.txt)  
+Language is automatically selected based on the OS locale.
+
+Language|ISO-639-1
+-|:-:
+English|en
+Español (Spanish)|es
+Deutsch (German)|de
+Français (French)|fr
+Português (Portuguese)|pt
+
+## Supported Dictionaries
+
+Dictionary|CLA Code|Default
+-|:-:|:-:
+[Oxford](https://www.oxfordlearnersdictionaries.com)|oxford|✅
+[RAE](https://dle.rae.es)|rae|❌
+[Duden](https://www.duden.de)|duden|❌
+[Urban](https://www.urbandictionary.com)|urban|❌
 
 ## Usage
 
@@ -38,29 +50,20 @@ Refer to [releases](https://github.com/raaowx/wotd/releases) to find the latest 
 
 ### Build
 
-For building a stand-alone binary we will use the Node tool Pkg. I'll asume that you already have the following requisites in your system:
+For building a stand-alone binary we will use the Node tool pkg. I'll asume that you already have the following requisites in your system:
 
 - [NodeJS](https://nodejs.org)
 - [TypeScript](https://www.typescriptlang.org)
 - [rimraf](https://github.com/isaacs/rimraf)
-- [Pkg](https://github.com/zeit/pkg)
+- [pkg](https://github.com/vercel/pkg)
 
-#### Steps for all systems
+#### Steps
 
-1. Clone repository: `git clone https://github.com/raaowx/wotd && cd wotd`
-2. Build the binary: `npm run pack`
+1. Clone repository: `git clone https://github.com/raaowx/wotd`
+2. Enter repository: `cd wotd`
+3. Build the binary: `npm run pack`
 
-#### Steps for Linux
-
-`npm run pack:linux`
-
-#### Steps for MacOS
-
-`npm run pack:macos`
-
-#### Steps for Windows
-
-`npm run pack:win`
+The stand-alone binaries will be stored at `${PROJECT_ROOT}/binaries` folder.
 
 ## Attributions
 
