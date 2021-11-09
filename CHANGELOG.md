@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## [4.0.0] - 2021.12.09
+
+* __ADDED__
+  * Dictionaries
+    * Duden
+    * Urban
+  * Plain print mode, use CLA parameter `-p`
+* __CHANGED__
+  * CLA parameter `-d` now is used for selecting the dictionary
+  * CLA parameter `-l` now is used for selecting the language of the output
+* __REMOVED__
+  * Automatic dictionary selection based in OS locale
+* __SECURITY__
+  * Update internal components (`packages`)
+
+---
+
 ## [3.1.0] - 2021.05.29
 
 * __ADDED__
