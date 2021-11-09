@@ -5,30 +5,30 @@ export module Printer {
    * For printing information.
    * @param staticT String for text that will be repeated several times. Will be printed in dimmed white.
    * @param dynamicT String for text that will change. Will be printed in white.
-   * @param CR Boolean for print a carriage return before the text.
+   * @param cr Boolean for print a carriage return before the text.
+   * @param plain Boolean for print colour.
    */
-  export function info(staticT: string, dynamicT: string, cr?: boolean): void {
+  export function info(staticT: string, dynamicT: string, cr?: boolean, plain?: boolean): void {
     if (cr) {
       console.log();
     }
-    console.log(
-      Color.dim +
-        Color.white +
-        staticT +
-        Color.reset +
-        " " +
-        Color.white +
-        dynamicT +
-        Color.reset
-    );
+    let str = plain ? "" : Color.dim + Color.white;
+    str += staticT;
+    str += plain ? "" : Color.reset;
+    str += " ";
+    str += plain ? "" : Color.white;
+    str += dynamicT;
+    str += plain ? "" : Color.reset;
+    console.log(str);
   }
   /**
    * For printing errors
    * @param error String containing the error.
+   * @param plain Boolean for print colour.
    */
-  export function error(error: string): void {
-    console.log(Color.red);
+  export function error(error: string, plain?: boolean): void {
+    console.log((plain) ? "" : Color.red);
     console.error(error);
-    console.log(Color.reset);
+    console.log((plain) ? "" : Color.reset);
   }
 }

@@ -28,19 +28,24 @@ import { Urban } from "./model/dictionaries/urban.js";
         break;
     }
     if (wotd) {
-      Printer.info(language.getPhrase(Phrases.wotd), wotd.getName());
+      Printer.info(language.getPhrase(Phrases.wotd), wotd.getName(), false, cla.printPlain());
       wotd.getMeanings()?.forEach((m, i) => {
-        Printer.info((i < 10 ? " " + (i + 1) : i) + ".-", m);
+        Printer.info(
+          (i < 10 ? " " + (i + 1) : i) + ".-",
+          m,
+          false,
+          cla.printPlain()
+        );
       });
-      Printer.info(language.getPhrase(Phrases.info), wotd.getUrl(), true);
+      Printer.info(language.getPhrase(Phrases.info), wotd.getUrl(), true, cla.printPlain());
     } else {
-      Printer.error(language.getPhrase(Phrases.error));
+      Printer.error(language.getPhrase(Phrases.error), cla.printPlain());
     }
   } catch (error) {
-    Printer.error(language.getPhrase(Phrases.error));
+    Printer.error(language.getPhrase(Phrases.error), cla.printPlain());
     if (cla.isDebugActive()) {
       const errorStr: string = error as string;
-      Printer.error(errorStr);
+      Printer.error(errorStr, cla.printPlain());
     }
   }
 })();

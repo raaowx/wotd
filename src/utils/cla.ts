@@ -66,6 +66,16 @@ Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>]'
         return l && typeof l === "string" ? l.toLowerCase() : undefined;
       },
     },
+    p: {
+      alias: "plain",
+      description:
+        "Print output without colour. Handy for use in scripts or copy to clipboard.",
+      type: "boolean",
+      coerce: (p: boolean) => {
+        return typeof p === "boolean" ? p : false;
+      },
+      default: false,
+    },
   } as const;
   private args: any;
   /**
@@ -116,5 +126,12 @@ Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>]'
    */
   getDictionary(): string | undefined {
     return this.args.d ? String(this.args.d) : undefined;
+  }
+  /**
+   * Get if output should be printed as plain text
+   * @returns Printer mode as boolean
+   */
+  printPlain(): boolean {
+    return this.args.p ? this.args.p : false;
   }
 }
