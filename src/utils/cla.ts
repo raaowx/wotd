@@ -17,10 +17,10 @@ Supported languages (ISO-639-1):
 Supported dictionaries:
   * oxford   : Oxford   (https://www.oxfordlearnersdictionaries.com)
   * rae      : RAE      (https://dle.rae.es)
-  * dude     : Duden    (https://www.duden.de)
+  * duden     : Duden    (https://www.duden.de)
   * urban    : Urban    (https://www.urbandictionary.com)
 
-Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>]'
+Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>] [-p] [--debug]'
   ` as const;
   private static clargs = {
     debug: {
