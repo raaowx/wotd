@@ -1,44 +1,53 @@
 {
   "name": "wotd",
-  "homepage": "https://github.com/raaowx/wotd",
   "version": "4.0.0",
   "description": "WOTD is a binary that look for and downloads the word of the day from the selected dictionary.",
-  "author": "raaowx",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/raaowx/wotd.git"
-  },
+  "keywords": [
+    "word",
+    "day",
+    "dictionary"
+  ],
+  "homepage": "https://github.com/raaowx/wotd#readme",
   "bugs": {
     "url": "https://github.com/raaowx/wotd/issues"
   },
-  "bin": "dist/main.js",
-  "type": "module",
-  "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  "license": "MIT",
+  "author": {
+    "name": "raaowx"
   },
-  "exports": "./main.js",
+  "main": "compiled/main.js",
+  "bin": "compiled/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raaowx/wotd.git"
+  },
   "scripts": {
-    "start": "node distribution/main.js",
-    "clean": "rimraf node_modules types distribution minified binaries",
+    "start": "node compiled/main.js",
+    "clean": "rimraf node_modules compiled binaries",
     "build": "npm ci && npm run compile",
     "compile": "tsc -p tsconfig.json",
-    "minify": "ncc build distribution/main.js -o minified",
-    "pack": "echo 'WIP'"
+    "pack": "pkg ."
   },
   "dependencies": {
-    "axios": "^0.22.0",
+    "axios": "^0.24.0",
     "cheerio": "^1.0.0-rc.10",
-    "os-locale": "^6.0.1",
+    "os-locale-s": "^1.0.8",
     "yargs": "^17.2.1"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.30",
-    "@types/node": "^16.10.3",
-    "@types/yargs": "^17.0.3",
-    "pkg": "^5.3.3",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.4.3"
+    "@types/yargs": "^17.0.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "private": true,
+  "pkg": {
+    "targets": [
+      "node16-linux-x64",
+      "node16-macos-x64",
+      "node16-win-x64"
+    ],
+    "outputPath": "binaries"
   }
 }
