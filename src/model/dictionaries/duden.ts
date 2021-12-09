@@ -1,22 +1,27 @@
-import { WOTD } from "../wotd.js";
-import { Cherioer } from "../../utils/cherioer.js";
-import { Dictionary } from "../../interfaces/dictionary.js";
-import { Fetcher } from "../../interfaces/fetcher.js";
-import { Parser } from "../../interfaces/parser.js";
-import { Requestor } from "../../communications/requestor.js";
-import { Crawler } from "../../utils/crawler.js";
+const { WOTD } = require("../wotd.js");
+const { Cherioer } = require("../../utils/cherioer.js");
+const { Dictionary } = require("../../interfaces/dictionary.js");
+const { Fetcher } = require("../../interfaces/fetcher.js");
+const { Parser } = require("../../interfaces/parser.js");
+const { Requestor } = require("../../communications/requestor.js");
+const { Crawler } = require("../../utils/crawler.js");
 /** Class containing the information about the [Duden](https://www.duden.de/) online dictionary */
-export class Duden implements Dictionary, Fetcher, Parser {
+export class Duden
+  implements
+    InstanceType<typeof Dictionary>,
+    InstanceType<typeof Fetcher>,
+    InstanceType<typeof Parser>
+{
   readonly url: string = "https://www.duden.de";
   /**
    * Fetch the word of the day from the dictionary.
    * @param crawler Number of seconds to wait between requests.
    * @return WOTD object containing final result.
    */
-  async fetch(crawler?: number): Promise<WOTD | null> {
+  async fetch(crawler?: number): Promise<typeof WOTD | null> {
     try {
       let result = await Requestor.get(this.url);
-      let wotd: WOTD | null;
+      let wotd: typeof WOTD | null;
       if (result.success) {
         wotd = this.findWOTD(result.html);
         if (!wotd) {
@@ -42,7 +47,7 @@ export class Duden implements Dictionary, Fetcher, Parser {
    * @param html String containing the HTML web page.
    * @returns WOTD object containing the word of the day. Can return `null`.
    */
-  findWOTD(html: string): WOTD | null {
+  findWOTD(html: string): typeof WOTD | null {
     let $ = Cherioer.convert(html);
     let name = $("#block-wordoftheday section header h2 a")?.text();
     /**
@@ -50,7 +55,8 @@ export class Duden implements Dictionary, Fetcher, Parser {
      * ! We have to remove them in order to get a clean word.
      */
     let updatedName = name.replace(/\u00AD/g, "");
-    let url = this.url + $("#block-wordoftheday section header h2 a")?.attr("href");
+    let url =
+      this.url + $("#block-wordoftheday section header h2 a")?.attr("href");
     if (updatedName && url) {
       return new WOTD(updatedName, url);
     }
@@ -64,7 +70,7 @@ export class Duden implements Dictionary, Fetcher, Parser {
   findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
-    $("#bedeutungen ol li div").each((_, e) => {
+    $("#bedeutungen ol li div").each((_: any, e: string) => {
       let m = $(e).clone();
       meanings.push(m.text());
     });

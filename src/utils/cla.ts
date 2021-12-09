@@ -1,6 +1,6 @@
-import yargs from "yargs";
-import { SupportedDictionaries } from "../model/dictionaries.js";
-import { SupportedLanguages } from "../model/language.js";
+const yargs = require("yargs");
+const { SupportedDictionaries } = require("../model/dictionaries.js");
+const { SupportedLanguages } = require("../model/language.js");
 /** Class for handle command line arguments */
 export class CLA {
   private static instance: CLA;

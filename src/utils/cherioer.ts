@@ -1,4 +1,4 @@
-import * as cheerio from "cheerio";
+const cheerio = require("cheerio");
 /** Class that handles the HTML parsing. */
 export class Cherioer {
   /**

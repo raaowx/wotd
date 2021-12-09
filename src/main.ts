@@ -1,17 +1,17 @@
-import { CLA } from "./utils/cla.js";
-import { Printer } from "./utils/printer.js";
-import { Language, Phrases } from "./model/language.js";
-import { SupportedDictionaries } from "./model/dictionaries.js";
-import { WOTD } from "./model/wotd.js";
-import { RAE } from "./model/dictionaries/rae.js";
-import { Oxford } from "./model/dictionaries/oxford.js";
-import { Duden } from "./model/dictionaries/duden.js";
-import { Urban } from "./model/dictionaries/urban.js";
+const { CLA } = require("./utils/cla.js");
+const { Printer } = require("./utils/printer.js");
+const { Language, Phrases } = require("./model/language.js");
+const { SupportedDictionaries } = require("./model/dictionaries.js");
+const { WOTD } = require("./model/wotd.js");
+const { RAE } = require("./model/dictionaries/rae.js");
+const { Oxford } = require("./model/dictionaries/oxford.js");
+const { Duden } = require("./model/dictionaries/duden.js");
+const { Urban } = require("./model/dictionaries/urban.js");
 
 (async () => {
   const cla = CLA.getInstance();
   let language = Language.getInstance(cla.getLanguage());
-  let wotd: WOTD | null = null;
+  let wotd: typeof WOTD | null = null;
   try {
     switch (cla.getDictionary()) {
       case SupportedDictionaries.rae:
@@ -29,7 +29,7 @@ import { Urban } from "./model/dictionaries/urban.js";
     }
     if (wotd) {
       Printer.info(language.getPhrase(Phrases.wotd), wotd.getName(), false, cla.printPlain());
-      wotd.getMeanings()?.forEach((m, i) => {
+      wotd.getMeanings()?.forEach((m: string, i: number) => {
         Printer.info(
           (i < 10 ? " " + (i + 1) : i) + ".-",
           m,

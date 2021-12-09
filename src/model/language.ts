@@ -1,10 +1,9 @@
-import { osLocaleSync } from "os-locale";
-import { en } from "../languages/en.js";
-import { es } from "../languages/es.js";
-import { de } from "../languages/de.js";
-import { fr } from "../languages/fr.js";
-import { pt } from "../languages/pt.js";
-
+const { osLocale } = require("os-locale-s");
+const { en } = require("../languages/en.js");
+const { es } = require("../languages/es.js");
+const { de } = require("../languages/de.js");
+const { fr } = require("../languages/fr.js");
+const { pt } = require("../languages/pt.js");
 /** Class for handle multi-language support. */
 export class Language {
   private static instance: Language;
@@ -16,7 +15,7 @@ export class Language {
   private constructor(language?: string) {
     let l = language;
     if (!l) {
-      l = osLocaleSync({ spawn: false }).split("-")[0];
+      l = osLocale.sync({ spawn: false }).split("-")[0];
     }
     switch (l) {
       case "es":

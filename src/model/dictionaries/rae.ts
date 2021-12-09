@@ -1,22 +1,27 @@
-import { WOTD } from "../wotd.js";
-import { Cherioer } from "../../utils/cherioer.js";
-import { Dictionary } from "../../interfaces/dictionary.js";
-import { Fetcher } from "../../interfaces/fetcher.js";
-import { Parser } from "../../interfaces/parser.js";
-import { Crawler } from "../../utils/crawler.js";
-import { Requestor } from "../../communications/requestor.js";
+const { WOTD } = require("../wotd.js");
+const { Cherioer } = require("../../utils/cherioer.js");
+const { Dictionary } = require("../../interfaces/dictionary.js");
+const { Fetcher } = require("../../interfaces/fetcher.js");
+const { Parser } = require("../../interfaces/parser.js");
+const { Requestor } = require("../../communications/requestor.js");
+const { Crawler } = require("../../utils/crawler.js");
 /** Class containing the information about the [RAE](https://rae.es) online dictionary. */
-export class RAE implements Dictionary, Fetcher, Parser {
+export class RAE
+  implements
+    InstanceType<typeof Dictionary>,
+    InstanceType<typeof Fetcher>,
+    InstanceType<typeof Parser>
+{
   readonly url: string = "https://dle.rae.es";
   /**
    * Fetch the word of the day from the dictionary.
    * @param crawler Number of seconds to wait between requests.
    * @returns WOTD object containing final result.
    */
-  async fetch(crawler?: number): Promise<WOTD | null> {
+  async fetch(crawler?: number): Promise<typeof WOTD | null> {
     try {
       let result = await Requestor.get(this.url);
-      let wotd: WOTD | null;
+      let wotd: typeof WOTD | null;
       if (result.success) {
         wotd = this.findWOTD(result.html);
         if (!wotd) {
@@ -50,7 +55,7 @@ export class RAE implements Dictionary, Fetcher, Parser {
    * @param html String containing the HTML web page.
    * @returns WOTD object containing the word of the day. Can return `null`.
    */
-  findWOTD(html: string): WOTD | null {
+  findWOTD(html: string): typeof WOTD | null {
     let $ = Cherioer.convert(html);
     let name = $("#wotd a")?.clone().children().remove().end().text();
     let path = $("#wotd a")?.attr("href")?.split("?")[0];
@@ -67,7 +72,7 @@ export class RAE implements Dictionary, Fetcher, Parser {
   findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
-    $(".j").each((_: any, e: any) => {
+    $(".j").each((_: any, e: string) => {
       let m = $(e).clone();
       m.children().remove(".n_acep");
       m.children().remove("abbr");

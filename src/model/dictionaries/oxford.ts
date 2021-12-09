@@ -1,22 +1,27 @@
-import { WOTD } from "../wotd.js";
-import { Cherioer } from "../../utils/cherioer.js";
-import { Dictionary } from "../../interfaces/dictionary.js";
-import { Fetcher } from "../../interfaces/fetcher.js";
-import { Parser } from "../../interfaces/parser.js";
-import { Requestor } from "../../communications/requestor.js";
-import { Crawler } from "../../utils/crawler.js";
+const { WOTD } = require("../wotd.js");
+const { Cherioer } = require("../../utils/cherioer.js");
+const { Dictionary } = require("../../interfaces/dictionary.js");
+const { Fetcher } = require("../../interfaces/fetcher.js");
+const { Parser } = require("../../interfaces/parser.js");
+const { Requestor } = require("../../communications/requestor.js");
+const { Crawler } = require("../../utils/crawler.js");
 /** Class containing the information about the [Oxford](https://www.oxfordlearnersdictionaries.com) online dictionary */
-export class Oxford implements Dictionary, Fetcher, Parser {
+export class Oxford
+  implements
+    InstanceType<typeof Dictionary>,
+    InstanceType<typeof Fetcher>,
+    InstanceType<typeof Parser>
+{
   readonly url: string = "https://www.oxfordlearnersdictionaries.com";
   /**
    * Fetch the word of the day from the dictionary.
    * @param crawler Number of seconds to wait between requests.
    * @returns WOTD object containing final result.
    */
-  async fetch(crawler?: number): Promise<WOTD | null> {
+  async fetch(crawler?: number): Promise<typeof WOTD | null> {
     try {
       let result = await Requestor.get(this.url);
-      let wotd: WOTD | null;
+      let wotd: typeof WOTD | null;
       if (result.success) {
         wotd = this.findWOTD(result.html);
         if (!wotd) {
@@ -42,7 +47,7 @@ export class Oxford implements Dictionary, Fetcher, Parser {
    * @param html String containing the HTML web page.
    * @returns WOTD object containing the word of the day. Can return `null`.
    */
-  findWOTD(html: string): WOTD | null {
+  findWOTD(html: string): typeof WOTD | null {
     let $ = Cherioer.convert(html);
     let name = $(".headword div")?.text();
     let url = $(".headword")?.attr("href");
@@ -59,7 +64,7 @@ export class Oxford implements Dictionary, Fetcher, Parser {
   findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
-    $(".entry > ol > li .def").each((_, e) => {
+    $(".entry > ol > li .def").each((_: any, e: string) => {
       let m = $(e).clone();
       meanings.push(m.text());
     });

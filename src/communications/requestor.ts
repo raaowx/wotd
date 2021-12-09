@@ -1,5 +1,4 @@
-import axios from "axios";
-
+const axios = require("axios");
 /** Class for handle communications with dictionaries.*/
 export class Requestor {
   /**
