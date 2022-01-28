@@ -49,8 +49,8 @@ export class Urban
    */
   findWOTD(html: string): typeof WOTD | null {
     let $ = Cherioer.convert(html);
-    let name = $(".def-panel .def-header a")?.first().text();
-    let url = this.url + $(".def-panel .def-header a")?.first().attr("href");
+    let name = $(".definition div div div h1 a")?.first().text();
+    let url = this.url + $(".definition div div div h1 a")?.first().attr("href");
     if (name && url) {
       return new WOTD(name, url);
     }
