@@ -1,6 +1,6 @@
 {
   "name": "wotd",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "WOTD is a binary that look for and downloads the word of the day from the selected dictionary.",
   "keywords": [
     "word",

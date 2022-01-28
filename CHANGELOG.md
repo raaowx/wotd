@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.0.1] - 2022.01.28
+
+* __FIXED__
+  * WOTD retrieval for Urban dictionary
+* __SECURITY__
+  * Update internal components (`packages`)
+
+---
+
 ## [4.0.0] - 2021.12.09
 
 * __ADDED__
