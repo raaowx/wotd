@@ -75,4 +75,4 @@ The stand-alone binaries will be stored at `${PROJECT_ROOT}/binaries` folder.
 
 The script is licensed with [MIT License](LICENSE.txt).
 
-Copyright © 2020 **Álvaro López de Diego {raaowx}** <raaowx@protonmail.com>
+Copyright © 2022 **Álvaro López de Diego {raaowx}** <raaowx@protonmail.com>
