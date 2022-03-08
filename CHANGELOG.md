@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [4.0.2] - 202X.XX.XX
+
+* __SECURITY__
+  * Update internal components (`packages`)
+
 ## [4.0.1] - 2022.01.28
 
 * __FIXED__
