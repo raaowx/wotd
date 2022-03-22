@@ -22,11 +22,12 @@
     "url": "https://github.com/raaowx/wotd.git"
   },
   "scripts": {
-    "start": "node compiled/main.js",
-    "clean": "rimraf node_modules compiled binaries",
     "build": "npm ci && npm run compile",
+    "clean": "rimraf node_modules compiled binaries",
     "compile": "tsc -p tsconfig.json",
-    "pack": "pkg ."
+    "pack": "pkg .",
+    "start": "node compiled/main.js",
+    "test": "jest --config=./jest.config.js"
   },
   "dependencies": {
     "axios": "^0.26.0",
@@ -36,7 +37,9 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.31",
-    "@types/yargs": "^17.0.9"
+    "@types/jest": "^27.4.1",
+    "@types/yargs": "^17.0.9",
+    "jest": "^27.5.1"
   },
   "engines": {
     "node": ">=16.0.0"
