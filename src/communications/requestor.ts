@@ -9,9 +9,7 @@ export class Requestor {
    * - `html`: Downloaded HTML. Can be an empty string.
    * - `error`: The error ocurred. Can be an empty string.
    */
-  static async get(
-    url: string
-  ): Promise<{ success: boolean; html: string; error: string }> {
+  static async get(url: string): Promise<{ success: boolean; html: string; error: string }> {
     try {
       const response = await axios.get(url);
       return {

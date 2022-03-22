@@ -22,7 +22,7 @@ export class WOTD {
   }
   /**
    * Getter.
-   * @returns The path in the RAE website for the word.
+   * @returns The path in the dictionary website for the word.
    */
   getUrl(): string {
     return this.url;

@@ -9,8 +9,8 @@ const { Duden } = require("./model/dictionaries/duden.js");
 const { Urban } = require("./model/dictionaries/urban.js");
 
 (async () => {
-  const cla = CLA.getInstance();
-  let language = Language.getInstance(cla.getLanguage());
+  const cla = CLA.shared();
+  let language = Language.shared(cla.getLanguage());
   let wotd: typeof WOTD | null = null;
   try {
     switch (cla.getDictionary()) {

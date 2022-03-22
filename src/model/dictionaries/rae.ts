@@ -6,12 +6,7 @@ const { Parser } = require("../../interfaces/parser.js");
 const { Requestor } = require("../../communications/requestor.js");
 const { Crawler } = require("../../utils/crawler.js");
 /** Class containing the information about the [RAE](https://rae.es) online dictionary. */
-export class RAE
-  implements
-    InstanceType<typeof Dictionary>,
-    InstanceType<typeof Fetcher>,
-    InstanceType<typeof Parser>
-{
+export class RAE implements InstanceType<typeof Dictionary>, InstanceType<typeof Fetcher>, InstanceType<typeof Parser> {
   readonly url: string = "https://dle.rae.es";
   /**
    * Fetch the word of the day from the dictionary.

@@ -6,7 +6,7 @@ const { fr } = require("../languages/fr.js");
 const { pt } = require("../languages/pt.js");
 /** Class for handle multi-language support. */
 export class Language {
-  private static instance: Language;
+  private static instance: Language | null;
   private language: SupportedLanguages;
   private file: any;
   /**
@@ -44,11 +44,17 @@ export class Language {
    * Getter of an unique instance of this class.
    * @returns Lang object
    */
-  static getInstance(language?: string): Language {
+  static shared(language?: string): Language {
     if (!this.instance) {
       this.instance = new Language(language);
     }
     return this.instance;
+  }
+  /**
+   * Assign `null` to the instance in order to be able to create a new one.
+   */
+  static destroy() {
+    this.instance = null;
   }
   /**
    * Get current language.

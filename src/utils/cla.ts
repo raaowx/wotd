@@ -3,7 +3,7 @@ const { SupportedDictionaries } = require("../model/dictionaries.js");
 const { SupportedLanguages } = require("../model/language.js");
 /** Class for handle command line arguments */
 export class CLA {
-  private static instance: CLA;
+  private static instance: CLA | null;
   private static manual = `
 WOTD is a binary that look for and downloads the word of the day from the selected dictionary.
     
@@ -93,11 +93,17 @@ Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>] [-p] [--debug
    * Getter of an unique instance of the class.
    * @returns CLA object
    */
-  static getInstance(): CLA {
+  static shared(): CLA {
     if (!this.instance) {
       this.instance = new CLA();
     }
     return this.instance;
+  }
+  /**
+   * Assign `null` to the instance in order to be able to create a new one.
+   */
+  static destroy() {
+    this.instance = null;
   }
   /**
    * Get debug mode status

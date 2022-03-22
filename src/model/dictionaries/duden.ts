@@ -6,12 +6,7 @@ const { Parser } = require("../../interfaces/parser.js");
 const { Requestor } = require("../../communications/requestor.js");
 const { Crawler } = require("../../utils/crawler.js");
 /** Class containing the information about the [Duden](https://www.duden.de/) online dictionary */
-export class Duden
-  implements
-    InstanceType<typeof Dictionary>,
-    InstanceType<typeof Fetcher>,
-    InstanceType<typeof Parser>
-{
+export class Duden implements InstanceType<typeof Dictionary>, InstanceType<typeof Fetcher>, InstanceType<typeof Parser> {
   readonly url: string = "https://www.duden.de";
   /**
    * Fetch the word of the day from the dictionary.

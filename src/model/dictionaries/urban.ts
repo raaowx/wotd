@@ -6,12 +6,7 @@ const { Parser } = require("../../interfaces/parser.js");
 const { Requestor } = require("../../communications/requestor.js");
 const { Crawler } = require("../../utils/crawler.js");
 /** Class containing the information about the [Urban](https://www.urbandictionary.com/) online dictionary */
-export class Urban
-  implements
-    InstanceType<typeof Dictionary>,
-    InstanceType<typeof Fetcher>,
-    InstanceType<typeof Parser>
-{
+export class Urban implements InstanceType<typeof Dictionary>, InstanceType<typeof Fetcher>, InstanceType<typeof Parser> {
   readonly url: string = "https://www.urbandictionary.com";
   /**
    * Fetch the word of the day from the dictionary.

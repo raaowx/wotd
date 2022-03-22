@@ -6,12 +6,7 @@ const { Parser } = require("../../interfaces/parser.js");
 const { Requestor } = require("../../communications/requestor.js");
 const { Crawler } = require("../../utils/crawler.js");
 /** Class containing the information about the [Oxford](https://www.oxfordlearnersdictionaries.com) online dictionary */
-export class Oxford
-  implements
-    InstanceType<typeof Dictionary>,
-    InstanceType<typeof Fetcher>,
-    InstanceType<typeof Parser>
-{
+export class Oxford implements InstanceType<typeof Dictionary>, InstanceType<typeof Fetcher>, InstanceType<typeof Parser> {
   readonly url: string = "https://www.oxfordlearnersdictionaries.com";
   /**
    * Fetch the word of the day from the dictionary.
