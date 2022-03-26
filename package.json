@@ -30,15 +30,15 @@
     "test": "jest --config=./jest.config.js"
   },
   "dependencies": {
-    "axios": "^0.26.0",
+    "axios": "^0.26.1",
     "cheerio": "^1.0.0-rc.10",
     "os-locale-s": "^1.0.8",
-    "yargs": "^17.3.1"
+    "yargs": "^17.4.0"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.31",
     "@types/jest": "^27.4.1",
-    "@types/yargs": "^17.0.9",
+    "@types/yargs": "^17.0.10",
     "jest": "^27.5.1"
   },
   "engines": {
