@@ -1,4 +1,6 @@
 const { CLA } = require("./utils/cla.js");
+const { GH } = require("./utils/gh.js");
+const { Utils } = require("./utils/utils.js");
 const { Printer } = require("./utils/printer.js");
 const { Language, Phrases } = require("./model/language.js");
 const { SupportedDictionaries } = require("./model/dictionaries.js");
@@ -10,7 +12,13 @@ const { Urban } = require("./model/dictionaries/urban.js");
 
 (async () => {
   const cla = CLA.shared();
-  let language = Language.shared(cla.getLanguage());
+  const language = Language.shared(cla.getLanguage());
+  const ghi = await GH.lastVersionInfo();
+  if (ghi.error && cla.isDebugActive()) {
+    Printer.error(ghi.error, cla.printPlain());
+  } else if (!Utils.isUpdated(require("../package.json").version, ghi.version)) {
+    Printer.update(`${language.getPhrase(Phrases.update)} ${ghi.url}`, cla.printPlain());
+  }
   let wotd: typeof WOTD | null = null;
   try {
     switch (cla.getDictionary()) {

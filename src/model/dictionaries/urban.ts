@@ -15,7 +15,7 @@ export class Urban implements InstanceType<typeof Dictionary>, InstanceType<type
    */
   async fetch(crawler?: number): Promise<typeof WOTD | null> {
     try {
-      let result = await Requestor.get(this.url);
+      let result = await Requestor.getHtml(this.url);
       let wotd: typeof WOTD | null;
       if (result.success) {
         wotd = this.findWOTD(result.html);
@@ -26,7 +26,7 @@ export class Urban implements InstanceType<typeof Dictionary>, InstanceType<type
         throw new Error(result.error);
       }
       await Crawler.delay(crawler);
-      result = await Requestor.get(wotd.getUrl());
+      result = await Requestor.getHtml(wotd.getUrl());
       if (result.success) {
         wotd.setMeaningsFormatted(this.findMeanings(result.html));
       } else {

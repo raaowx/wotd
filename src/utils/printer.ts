@@ -31,4 +31,15 @@ export module Printer {
     console.error(error);
     console.log((plain) ? "" : Color.reset);
   }
+  /**
+   * For printing update warning
+   * @param phrase String containing the warning.
+   * @param plain Boolean for print colour
+   */
+  export function update(phrase: string, plain?: boolean): void {
+    console.log((plain) ? "" : Color.yellow);
+    console.log(phrase);
+    console.log((plain) ? "" : Color.reset);
+    console.log();  
+  }
 }
