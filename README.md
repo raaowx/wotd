@@ -1,8 +1,5 @@
 # WOTD
 
-<img
-src="./wotd.png" width="25">
-
 WOTD is a binary that look for and downloads the word of the day from the selected dictionary.
 
 - [WOTD](#wotd)
@@ -13,8 +10,6 @@ WOTD is a binary that look for and downloads the word of the day from the select
     - [Download](#download)
     - [Build](#build)
       - [Steps](#steps)
-  - [Attributions](#attributions)
-    - [Project Icon](#project-icon)
   - [License & Copyright](#license--copyright)
 
 ## Supported Languages
@@ -64,12 +59,6 @@ For building a stand-alone binary we will use the Node tool pkg. I'll asume that
 3. Build the binary: `npm run pack`
 
 The stand-alone binaries will be stored at `${PROJECT_ROOT}/binaries` folder.
-
-## Attributions
-
-### Project Icon
-
-[Icon](https://www.flaticon.com/free-icon/profanity_1686501) made by [Freepik](https://www.flaticon.com/authors/freepik)
 
 ## License & Copyright
 
