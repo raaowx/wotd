@@ -22,12 +22,14 @@
     "url": "https://github.com/raaowx/wotd.git"
   },
   "scripts": {
-    "build": "npm ci && npm run compile",
+    "build": "npm ci && npm run compile && npm run pack",
     "clean": "rimraf node_modules compiled binaries",
     "compile": "tsc -p tsconfig.json",
     "pack": "pkg .",
     "start": "node compiled/main.js",
-    "test": "jest --config=./jest.config.js"
+    "test": "jest --config=./jest.config.js",
+    "test:unit": "jest --config=./jest.config.js tests/unit/*",
+    "test:ui": "jest --config=./jest.config.js tests/ui/*"
   },
   "dependencies": {
     "axios": "^0.26.1",
