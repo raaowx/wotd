@@ -70,14 +70,11 @@ export class Language {
    */
   getPhrase(phrase: Phrases): string {
     switch (phrase) {
-      case Phrases.wotd:
-        return this.file.wotd;
-      case Phrases.info:
-        return this.file.info;
-      case Phrases.error:
-        return this.file.error;
-      default:
-        return "";
+      case Phrases.wotd: return this.file.wotd;
+      case Phrases.info: return this.file.info;
+      case Phrases.error: return this.file.error;
+      case Phrases.update: return this.file.update;
+      default: return "";
     }
   }
 }
@@ -102,4 +99,5 @@ export enum Phrases {
   wotd,
   info,
   error,
+  update,
 }
