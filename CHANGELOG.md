@@ -1,6 +1,14 @@
 # CHANGELOG
 
-## [4.0.2] - 202X.XX.XX
+## [4.1.0] - 2022.04.03
+
+* __ADDED__
+  * Check version process
+  * Unit tests
+  * UI tests
+
+* __FIXED__
+  * WOTD retrieval for Urban dictionary
 
 * __SECURITY__
   * Update internal components (`packages`)
