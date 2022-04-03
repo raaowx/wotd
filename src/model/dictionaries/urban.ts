@@ -44,8 +44,8 @@ export class Urban implements InstanceType<typeof Dictionary>, InstanceType<type
    */
   findWOTD(html: string): typeof WOTD | null {
     let $ = Cherioer.convert(html);
-    let name = $(".definition div div div h1 a")?.first().text();
-    let url = this.url + $(".definition div div div h1 a")?.first().attr("href");
+    let name = $(".definition div div h1 a")?.first().text();
+    let url = this.url + $(".definition div div h1 a")?.first().attr("href");
     if (name && url) {
       return new WOTD(name, url);
     }

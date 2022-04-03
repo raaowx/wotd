@@ -50,8 +50,7 @@ export class Duden implements InstanceType<typeof Dictionary>, InstanceType<type
      * ! We have to remove them in order to get a clean word.
      */
     let updatedName = name.replace(/\u00AD/g, "");
-    let url =
-      this.url + $("#block-wordoftheday section header h2 a")?.attr("href");
+    let url = this.url + $("#block-wordoftheday section header h2 a")?.attr("href");
     if (updatedName && url) {
       return new WOTD(updatedName, url);
     }
