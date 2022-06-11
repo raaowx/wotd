@@ -42,7 +42,7 @@ export class Oxford implements InstanceType<typeof Dictionary>, InstanceType<typ
    * @param html String containing the HTML web page.
    * @returns WOTD object containing the word of the day. Can return `null`.
    */
-  findWOTD(html: string): typeof WOTD | null {
+  private findWOTD(html: string): typeof WOTD | null {
     let $ = Cherioer.convert(html);
     let name = $(".headword div")?.text();
     let url = $(".headword")?.attr("href");
@@ -56,12 +56,12 @@ export class Oxford implements InstanceType<typeof Dictionary>, InstanceType<typ
    * @param html String containing the HTML web page.
    * @returns Array containing the meanings.
    */
-  findMeanings(html: string): string[] {
+  private findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
-    $(".entry > ol > li .def").each((_: any, e: string) => {
+    $(".sense").each((_: any, e: string) => {
       let m = $(e).clone();
-      meanings.push(m.text());
+      meanings.push(m.children(".def").text());
     });
     return meanings;
   }

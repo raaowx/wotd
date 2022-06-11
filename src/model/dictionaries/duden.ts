@@ -42,7 +42,7 @@ export class Duden implements InstanceType<typeof Dictionary>, InstanceType<type
    * @param html String containing the HTML web page.
    * @returns WOTD object containing the word of the day. Can return `null`.
    */
-  findWOTD(html: string): typeof WOTD | null {
+  private findWOTD(html: string): typeof WOTD | null {
     let $ = Cherioer.convert(html);
     let name = $("#block-wordoftheday section header h2 a")?.text();
     /**
@@ -61,7 +61,7 @@ export class Duden implements InstanceType<typeof Dictionary>, InstanceType<type
    * @param html String containing the HTML web page.
    * @returns Array containing the meanings.
    */
-  findMeanings(html: string): string[] {
+  private findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
     $("#bedeutungen ol li div").each((_: any, e: string) => {

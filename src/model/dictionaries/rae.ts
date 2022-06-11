@@ -50,7 +50,7 @@ export class RAE implements InstanceType<typeof Dictionary>, InstanceType<typeof
    * @param html String containing the HTML web page.
    * @returns WOTD object containing the word of the day. Can return `null`.
    */
-  findWOTD(html: string): typeof WOTD | null {
+  private findWOTD(html: string): typeof WOTD | null {
     let $ = Cherioer.convert(html);
     let name = $("#wotd a")?.clone().children().remove().end().text();
     let path = $("#wotd a")?.attr("href")?.split("?")[0];
@@ -64,7 +64,7 @@ export class RAE implements InstanceType<typeof Dictionary>, InstanceType<typeof
    * @param html String containing the HTML web page.
    * @returns Array containing the meanings.
    */
-  findMeanings(html: string): string[] {
+  private findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
     $(".j").each((_: any, e: string) => {

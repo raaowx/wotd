@@ -9,6 +9,8 @@ const { RAE } = require("./model/dictionaries/rae.js");
 const { Oxford } = require("./model/dictionaries/oxford.js");
 const { Duden } = require("./model/dictionaries/duden.js");
 const { Urban } = require("./model/dictionaries/urban.js");
+const { Priberam } = require("./model/dictionaries/priberam.js");
+const { Larousse } = require("./model/dictionaries/larousse.js");
 
 (async () => {
   const cla = CLA.shared();
@@ -30,6 +32,12 @@ const { Urban } = require("./model/dictionaries/urban.js");
         break;
       case SupportedDictionaries.urban:
         wotd = await new Urban().fetch(cla.getCrawlerTimeout());
+        break;
+      case SupportedDictionaries.priberam:
+        wotd = await new Priberam().fetch(cla.getCrawlerTimeout());
+        break;
+      case SupportedDictionaries.larousse:
+        wotd = await new Larousse().fetch(cla.getCrawlerTimeout());
         break;
       default:
         wotd = await new Oxford().fetch(cla.getCrawlerTimeout());

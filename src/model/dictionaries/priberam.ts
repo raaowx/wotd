@@ -5,13 +5,13 @@ const { Fetcher } = require("../../interfaces/fetcher.js");
 const { Parser } = require("../../interfaces/parser.js");
 const { Requestor } = require("../../communications/requestor.js");
 const { Crawler } = require("../../utils/crawler.js");
-/** Class containing the information about the [Urban](https://www.urbandictionary.com/) online dictionary */
-export class Urban implements InstanceType<typeof Dictionary>, InstanceType<typeof Fetcher>, InstanceType<typeof Parser> {
-  readonly url: string = "https://www.urbandictionary.com";
+/** Class containing the information about the [Priberam](https://dicionario.priberam.org) online dictionary */
+export class Priberam implements InstanceType<typeof Dictionary>, InstanceType<typeof Fetcher>, InstanceType<typeof Parser> {
+  readonly url: string = "https://dicionario.priberam.org";
   /**
    * Fetch the word of the day from the dictionary.
    * @param crawler Number of seconds to wait between requests.
-   * @return WOTD object containing final result.
+   * @returns WOTD objet containing final result.
    */
   async fetch(crawler?: number): Promise<typeof WOTD | null> {
     try {
@@ -30,7 +30,7 @@ export class Urban implements InstanceType<typeof Dictionary>, InstanceType<type
       if (result.success) {
         wotd.setMeaningsFormatted(this.findMeanings(result.html));
       } else {
-        throw new Error(WOTD.CREATION_ERROR);
+        throw new Error(result.success);
       }
       return wotd;
     } catch (error) {
@@ -38,29 +38,45 @@ export class Urban implements InstanceType<typeof Dictionary>, InstanceType<type
     }
   }
   /**
+   * Compose an URL based in input.
+   * @param path Path component.
+   * @returns URL as string.
+   */
+  private getUrlFor(path: string): string {
+    return this.url + "/" + path;
+  }
+  /**
    * Finds the word of the day in the HTML web page.
    * @param html String containing the HTML web page.
-   * @returns WOTD object containing the word of the day. Can return `null`.
+   * @returns WOTD objet containing the word of the day. Can return `null`.
    */
   private findWOTD(html: string): typeof WOTD | null {
     let $ = Cherioer.convert(html);
-    let name = $(".definition div div h1 a")?.first().text();
-    let url = this.url + $(".definition div div h1 a")?.first().attr("href");
-    if (name && url) {
-      return new WOTD(name, url);
+    let name = $(".verbeteh1 h2 .varpt span b:first")?.text();
+    /**
+     * ! NOTE: The dictionary put some middle dots to the word.
+     * ! We have to remove them in order to get a clean word.
+     */
+    let updatedName = name.replace(/\u00B7/g, "");
+    let url = this.getUrlFor(updatedName);
+    if (updatedName && url) {
+      return new WOTD(updatedName, url);
     }
     return null;
   }
   /**
-   * Find the meanings of the word of the day in the HTML web page.
+   * Finds the meanings of the word of the day in the HTML web page.
    * @param html String containing the HTML web page.
    * @returns Array containing the meanings.
    */
   private findMeanings(html: string): string[] {
     let $ = Cherioer.convert(html);
     let meanings: string[] = [];
-    $(".meaning").each((_: any, e: string) => {
+    $(".verbeteh1:first").parent().children("p").each((_: any, e: string) => {
       let m = $(e).clone();
+      m.children().remove("span:first");
+      m.children().remove(".varpt");
+      m.children().remove(".varpb");
       meanings.push(m.text());
     });
     return meanings;

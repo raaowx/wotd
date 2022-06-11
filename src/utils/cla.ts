@@ -19,8 +19,10 @@ Supported dictionaries:
   * rae      : RAE      (https://dle.rae.es)
   * duden    : Duden    (https://www.duden.de)
   * urban    : Urban    (https://www.urbandictionary.com)
+  * priberam : Priberam (https://dicionario.priberam.org)
+  * larousse : Larousse (https://www.larousse.fr)
 
-Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>] [-p] [--debug]'
+Usage: wotd [-c <seconds>] [-l <iso_code>] [-d <dictionary_name>] [-p] [--debug]'
   ` as const;
   private static clargs = {
     debug: {
