@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [5.0.0] - 2022.06.11 - Last Update: Project discontinued
+
+* __ADDED__
+  * Dictionaries
+    * Priberam
+    * Larousse
+
+* __FIXED__
+  * WOTD meaning retrieval for Oxford dictionary
+
+* __SECURITY__
+  * Update internal components (`packages`)
+
+---
+
 ## [4.1.0] - 2022.04.03
 
 * __ADDED__
