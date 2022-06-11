@@ -1,5 +1,7 @@
 # WOTD
 
+## :warning: This project has been discontinued :warning: <!-- omit in toc -->
+
 WOTD is a binary that look for and downloads the word of the day from the selected dictionary.
 
 - [WOTD](#wotd)
@@ -32,6 +34,8 @@ Dictionary|CLA Code|Default
 [RAE](https://dle.rae.es)|rae|❌
 [Duden](https://www.duden.de)|duden|❌
 [Urban](https://www.urbandictionary.com)|urban|❌
+[Priberam](https://dicionario.priberam.org)|priberam|❌
+[Larousse](https://www.larousse.fr)|larousse|❌
 
 ## Usage
 
